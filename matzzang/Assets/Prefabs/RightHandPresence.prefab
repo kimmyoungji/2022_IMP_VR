@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7075535761759655437}
   - component: {fileID: 7075535761759655442}
+  - component: {fileID: 8177051411410255047}
   m_Layer: 0
   m_Name: RightHandPresence
   m_TagString: Untagged
@@ -38,7 +39,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7075535761759655443}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e35c6387adb65b428f5383eecfc8ac8, type: 3}
   m_Name: 
@@ -48,4 +49,17 @@ MonoBehaviour:
   controllerPrefabs:
   - {fileID: 7523567926693483842, guid: b2ec64201e9ec6c4ba155691307536cb, type: 3}
   - {fileID: 5191550869875014123, guid: 0efe8147fc0009d4ea3039b2374d927c, type: 3}
+  handModelPrefab: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
+--- !u!114 &8177051411410255047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075535761759655443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597738c254f338442934b689dc09b159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   handModelPrefab: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
