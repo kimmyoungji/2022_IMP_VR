@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5466621089422076411}
   - component: {fileID: 4073177513195111671}
   - component: {fileID: 1849245757359293999}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: Bottle_Type1_Bullet
   m_TagString: Bottle
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.25
+  m_ThrowSmoothingDuration: 1
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -302,7 +302,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 1.5
+  m_ThrowVelocityScale: 1
   m_ThrowAngularVelocityScale: 1
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ffbc12ba1e1a94c94ab37d1e07eeb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeWaitTime: 0.3
+  changeWaitTime: 0.5
   isSlowMotion: 0
   timeZoomRate: 0.5
 --- !u!114 &1849245757359293999
@@ -340,7 +340,7 @@ MonoBehaviour:
   brokenSound: {fileID: 8300000, guid: 4f586f51bdf0aba4ca30d90826613031, type: 3}
   gravityScale: 1
   predictionCount: 100
-  displayInterval: 15
+  displayInterval: 30
   predictionPrefabs: {fileID: 3968481479756326357, guid: 7fe56fc0267bdfc469257bc59df845e3, type: 3}
   isDisplayLine: 1
 --- !u!1 &2981933728412323153
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 6084540291211107498}
   - component: {fileID: 8602101126810165611}
   - component: {fileID: 7357450633204811837}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: Bottle_A1_Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5466621089039219692}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: Piovt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

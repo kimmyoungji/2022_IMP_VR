@@ -5,26 +5,19 @@ using UnityEngine;
 public class characterCtrl_collision : MonoBehaviour
 {   
     public GameObject GameManager;
-    public float PlayerHealthLoss = 50;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float PlayerHealthLoss = 20f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // private void OnControllerColliderHit(ControllerColliderHit hit) {
+    //     if(hit.gameObject.CompareTag("Bottle")){
+    //         Debug.Log("Player collied with a Bottle");
+    //         GameManager.SendMessage("UpdatePlayerHealth",PlayerHealthLoss);
+    //     }
+    // }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit) {
-        if(hit.gameObject.CompareTag("Bottle")){
-            //Debug.Log("udpate player health");
+    private void OnCollisionEnter(Collision other) {
+        if(other.collider.CompareTag("Bottle")){
+            //Debug.Log("Player collied with a Bottle");
             GameManager.SendMessage("UpdatePlayerHealth",PlayerHealthLoss);
         }
     }
-
-    
 }

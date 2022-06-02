@@ -73,10 +73,10 @@ public class FireBottleBullet : MonoBehaviour
 
 
                 Destroy(line, 0.02f);
-                //if (!isGrabing)
-                //{
+                // if (!IsGrabing)
+                // {
                 //    Destroy(line);
-                //}
+                // }
             }
         }
     }
@@ -85,7 +85,7 @@ public class FireBottleBullet : MonoBehaviour
     {
         if (this.hasCollided == true) { return; }
 
-        if (IsGrabing == false && !collision.transform.CompareTag("Enemy"))
+        if (IsGrabing == false && !collision.collider.CompareTag("Enemy"))
         {
             this.hasCollided = true;
             //Instantiate(brokenObj, transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3469129083573868284}
   - component: {fileID: 3469129083573868287}
   - component: {fileID: 4403775660797129930}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Bottle_Type2_Bullet_Broken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4986,7 +4986,7 @@ GameObject:
   - component: {fileID: 7846671534917255357}
   - component: {fileID: 6931596769901376516}
   - component: {fileID: 6931596769901376519}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Bottle_A2_Br
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5099,7 +5099,7 @@ GameObject:
   - component: {fileID: 5557424917254832572}
   - component: {fileID: 7704563175380307921}
   - component: {fileID: 7704563175380307920}
-  m_Layer: 8
+  m_Layer: 18
   m_Name: Bottle_A2_Br01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

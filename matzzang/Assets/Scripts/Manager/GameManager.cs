@@ -1,68 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // health 0~180
-    public float EnemeyHealth = 180; // Enemy ealth: min 0 ~ max 180
-    public float PlayerHealth = 180; // Player Health: min 0 ~ max 180
-
-    private bool isHealthUpdated = true;
+    // health 0~160
+    public float EnemeyHealth = 160; // Enemy ealth: min 0 ~ max 160
+    public float PlayerHealth = 160; // Player Health: min 0 ~ max 160
+    private bool isHealthUpdated;
 
     // game result
-    private enum GameResult { win, lost, draw, proceeding}
+    private enum GameResult { win, lose, draw, proceeding}
     private GameResult gameResult;
 
     public GameObject UIManager;
     public GameObject AudioManager;
+    public ControllerManager controllerManager;
     
-    void Start()
-    {
+    void Start(){}
 
-    }
-
-    void Update()
+    public void Update()
     {
-        if(isHealthUpdated)
-        {
             // compare Player's and Enemy's Health
             if(PlayerHealth > 0 && EnemeyHealth <= 0)
             {
                 gameResult = GameResult.win;
-                Time.timeScale = 0;
                 UIManager.SendMessage("Show_04ResultUI_Win");
+                controllerManager.SendMessage("setHandRayActive",true);
             }
             else if(PlayerHealth <= 0 && EnemeyHealth > 0)
             {
-                gameResult = GameResult.lost;
-                Time.timeScale = 0;
-                UIManager.SendMessage("Show_05ResultUI_Lost");
+                gameResult = GameResult.lose;
+                UIManager.SendMessage("Show_05ResultUI_Lose");
+                controllerManager.SendMessage("setHandRayActive",true);
             }
-            else if(PlayerHealth <= 0 && EnemeyHealth <= 0)
+            else if(PlayerHealth <= 0 && EnemeyHealth <= 0){
                 gameResult = GameResult.draw;
-                //UIManager.SendMessage("Show_06ResultUI_Draw");
+                UIManager.SendMessage("Show_06ResultUI_Draw");
+                controllerManager.SendMessage("setHandRayActive",true);
+            }
             else
-                gameResult = GameResult.proceeding;
-
-            // print result
-            //Debug.Log(gameResult);
-            //Debug.Log("Enemy Health: "+ EnemeyHealth + " , Player Health: " + PlayerHealth );
-            //isHealthUpdated = false;
-        }
+                gameResult = GameResult.proceeding;    
     }
 
 
-    void UpdatePlayerHealth( int PHealthLoss){
+    public void UpdatePlayerHealth( float PHealthLoss){
         PlayerHealth -= PHealthLoss;
+        Debug.Log("Enemy Health: "+ EnemeyHealth + " , Player Health: " + PlayerHealth );
         UIManager.SendMessage("Update_02PlayerHealthUI",PlayerHealth);
-        //isHealthUpdated = true;
     }
 
-     void UpdateEnemyHealth( int EHealthLoss){
+    public void UpdateEnemyHealth( float EHealthLoss){
         EnemeyHealth -= EHealthLoss;
+        Debug.Log("Enemy Health: "+ EnemeyHealth + " , Player Health: " + PlayerHealth );
         UIManager.SendMessage("Update_03EnemyHealthUI",EnemeyHealth);
-        //isHealthUpdated = true;
+    }
+
+    public void QuitGame(){
+        // save any game data here
+         #if UNITY_EDITOR
+             // Application.Quit() does not work in the editor so
+             // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+             UnityEditor.EditorApplication.isPlaying = false;
+         #else
+             Application.Quit();
+         #endif
+    }
+
+    public void RestartGame(){
+        SceneManager.LoadScene("01 LevelSelectionScene",LoadSceneMode.Single);
     }
 
 }

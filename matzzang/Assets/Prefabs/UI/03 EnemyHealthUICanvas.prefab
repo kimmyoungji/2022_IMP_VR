@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1007568150984624533}
   - component: {fileID: 650896609176142313}
   - component: {fileID: 4065967125622032279}
+  - component: {fileID: 3055641140643825721}
   m_Layer: 5
   m_Name: 03 EnemyHealthUICanvas
   m_TagString: UI
@@ -27,7 +28,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860107861846813915}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 2298039290018443807}
@@ -37,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.0040283203, y: 2.270996}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 179.8826, y: 50.6747}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1007568150984624533
@@ -101,6 +102,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3055641140643825721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860107861846813915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225506d3c99b78f44a4a28f24f770705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fill: {fileID: 1371009794335995584}
 --- !u!1 &1997592269679189058
 GameObject:
   m_ObjectHideFlags: 0

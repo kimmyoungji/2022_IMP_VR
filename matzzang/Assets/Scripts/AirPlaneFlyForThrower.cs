@@ -17,16 +17,15 @@ public class AirPlaneFlyForThrower : MonoBehaviour
 
     //GameObject[] Grabs;
     //float grabNum;
-    float score = 0;
-    [SerializeField] int aimScore = 20;
-    float scoreLast;
+    // float score = 0;
+    // [SerializeField] int aimScore = 20;
+    // float scoreLast;
     //float objectLast;
 
-    WaitForSeconds waitForSeconds;
-
+    //WaitForSeconds waitForSeconds;
     bool isStopMove = false;
 
-    float EnemyHealthLoss = 50;
+    public float EnemyHealthLoss = 20;
 
     void Awake()
     {
@@ -37,7 +36,7 @@ public class AirPlaneFlyForThrower : MonoBehaviour
     private void Start()
     {
         GetRandomPosition();
-        scoreLast = aimScore;
+        //scoreLast = aimScore;
         //grabNum = Grabs.Length;
         //objectLast = Grabs.Length;
         //waitForSeconds = new WaitForSeconds(3f);
@@ -45,24 +44,6 @@ public class AirPlaneFlyForThrower : MonoBehaviour
 
     void Update()
     {
-        //if (score >= grabNum)
-        //{
-        //    transform.position = originPos;
-        //    return;
-        //}
-        //else
-        //{
-        //    distance = (transform.position - randomPos).sqrMagnitude;
-        //    if (distance > 0.01f)
-        //    {
-        //        transform.position = Vector3.MoveTowards(transform.position, randomPos, flySpeed * Time.deltaTime);
-        //    }
-        //    else
-        //    {
-        //        GetRandomPosition();
-        //    }
-        //}
-
         if (!isStopMove)
         {
             distance = (transform.position - randomPos).sqrMagnitude;
@@ -83,38 +64,6 @@ public class AirPlaneFlyForThrower : MonoBehaviour
         //randomPos = new Vector3(Random.Range(-10f, 10f), Random.Range(1f, 8f), originPos.z);
         //randomPos = new Vector3(Random.Range(-10f, 10f), 5, originPos.z);
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.CompareTag("Bottle"))
-        {
-            //score++;
-            //scoreLast--;
-            GameManager.SendMessage("UpdateEnemyHealth",EnemyHealthLoss);
-            //objectLast--;
-            //Debug.Log("You Hit!  -  Score: " + score);
-            //Debug.Log("Enemy HP Left: " + scoreLast);
-            //Debug.Log("Trash objects left: " + objectLast);
-            AudioManager.Instance.PlayRandomSFX(hitAudio);
-
-            //if (score >= grabNum)
-            // if (score >= aimScore)
-            // {
-            //     Debug.Log("Level Cleared");
-            //     StartCoroutine(nameof(WaitTime));
-            // }
-        }
-    }
-
-    // IEnumerator WaitTime()
-    // {
-    //     yield return waitForSeconds;
-
-    //     //EditorApplication.isPaused = true;
-    //     EditorApplication.isPlaying = false;
-
-    //     //Time.timeScale = 0;
-    // }
 
     public void IsStopMove(bool isStop)
     {
