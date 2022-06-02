@@ -51185,6 +51185,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Force Field Right
       objectReference: {fileID: 0}
+    - target: {fileID: 8631706509546718251, guid: b1a987d2003db87468bb7e14ed3b542f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1a987d2003db87468bb7e14ed3b542f, type: 3}
 --- !u!4 &1989244254 stripped
@@ -52771,6 +52775,10 @@ PrefabInstance:
     - target: {fileID: 7902693889173529845, guid: 62deffe43ab7df948ace123d696729b3, type: 3}
       propertyPath: m_Name
       value: Force Field Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902693889173529845, guid: 62deffe43ab7df948ace123d696729b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62deffe43ab7df948ace123d696729b3, type: 3}
