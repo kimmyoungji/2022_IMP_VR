@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1849245757359293999}
   m_Layer: 15
   m_Name: Bottle_Type1_Bullet
-  m_TagString: Trash
+  m_TagString: Bottle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

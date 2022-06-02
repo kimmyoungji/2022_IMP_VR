@@ -6,6 +6,10 @@ public class UIManager : MonoBehaviour
 {
     private GameObject[] HealthUIobject = new GameObject[2];
     private GameObject[] ResultUIobject = new GameObject[2];
+
+    // Rectransform of Health UIs
+    private RectTransform playerHealthRect;
+    private RectTransform EnemyHealthRect;
     
     void Start()
     {
@@ -27,6 +31,15 @@ public class UIManager : MonoBehaviour
            Debug.Log(ui);
            ui.SetActive(false);
        }
+
+       // get RectTransform of Health ui
+       if(HealthUIobject != null){
+            playerHealthRect = HealthUIobject[1].transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>();
+            EnemyHealthRect = HealthUIobject[0].transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>();
+            Debug.Log("playerHealthRect: "+ playerHealthRect);
+            Debug.Log("EnemyHealthRect: "+ EnemyHealthRect);
+       }
+       
     }
 
     // Update is called once per frame
@@ -35,22 +48,25 @@ public class UIManager : MonoBehaviour
         
     }
 
+    // called by gameManager
     public void Update_02PlayerHealthUI(int PlayernewHealth){
-        RectTransform fill = HealthUIobject[1].transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>();
-        Debug.Log("Update_02PlayerHealthUI: " + fill);
-        fill.sizeDelta = new Vector2(PlayernewHealth,10);
+        Debug.Log("Update_02PlayerHealthUI: " + playerHealthRect);
+        playerHealthRect.sizeDelta = new Vector2(PlayernewHealth,10);
     }
     
+    // called by gameManager
     public void Update_03EnemyHealthUI(int EnemynewHealth){
         RectTransform fill = HealthUIobject[0].transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>();
-        Debug.Log("Update_03EnemyHealthUI: " + fill);
-        fill.sizeDelta = new Vector2(EnemynewHealth,10);
+        Debug.Log("Update_03EnemyHealthUI: " + EnemyHealthRect);
+        EnemyHealthRect.sizeDelta = new Vector2(EnemynewHealth,10);
     }
 
+    // called by gameManager
     public void Show_04ResultUI_Win(){
         ResultUIobject[0].SetActive(true);
     }
 
+    // called by gameManager
     public void Show_05ResultUI_Lost(){
          ResultUIobject[1].SetActive(true);
     }

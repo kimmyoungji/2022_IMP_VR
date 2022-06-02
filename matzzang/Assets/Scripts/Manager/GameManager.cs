@@ -8,8 +8,6 @@ public class GameManager : MonoBehaviour
     public float EnemeyHealth = 180; // Enemy ealth: min 0 ~ max 180
     public float PlayerHealth = 180; // Player Health: min 0 ~ max 180
 
-    // Ui objects
-    private GameObject[] UIobject = new GameObject[5];
     private bool isHealthUpdated = true;
 
     // game result
@@ -43,12 +41,13 @@ public class GameManager : MonoBehaviour
             }
             else if(PlayerHealth <= 0 && EnemeyHealth <= 0)
                 gameResult = GameResult.draw;
+                //UIManager.SendMessage("Show_06ResultUI_Draw");
             else
                 gameResult = GameResult.proceeding;
 
             // print result
-            Debug.Log(gameResult);
-            Debug.Log("Enemy Health: "+ EnemeyHealth + " , Player Health: " + PlayerHealth );
+            //Debug.Log(gameResult);
+            //Debug.Log("Enemy Health: "+ EnemeyHealth + " , Player Health: " + PlayerHealth );
             //isHealthUpdated = false;
         }
     }

@@ -21,6 +21,7 @@ public class characterCtrl_collision : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit) {
         if(hit.gameObject.CompareTag("Bottle")){
+            //Debug.Log("udpate player health");
             GameManager.SendMessage("UpdatePlayerHealth",PlayerHealthLoss);
         }
     }

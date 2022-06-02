@@ -108,11 +108,10 @@ public class CustomContinuousMovement : MonoBehaviour
     }
 
     // make body capsule follow the camera
-
     private void CapsuleFollowHeadset()
     {
         // adjust the character controller height based on the user's heigth
-        characterController.height = origin.CameraInOriginSpaceHeight + additionalHeight;
+        //characterController.height = origin.CameraInOriginSpaceHeight + additionalHeight;
 
         // get the center of the capsule in the head by transforming from world to local position
         Vector3 capsuleCenter = transform.InverseTransformPoint(origin.Camera.transform.position);
