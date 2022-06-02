@@ -36222,6 +36222,7 @@ MonoBehaviour:
   UIManager: {fileID: 200620353}
   AudioManager: {fileID: 864154891}
   controllerManager: {fileID: 713470559}
+  Enemy: {fileID: 1819458535}
 --- !u!4 &1538245894
 Transform:
   m_ObjectHideFlags: 0
@@ -48698,6 +48699,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9dfc799d51c9d34c923a5e03c828b7b, type: 3}
+--- !u!1 &1819458535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4911568777767004850, guid: c9dfc799d51c9d34c923a5e03c828b7b, type: 3}
+  m_PrefabInstance: {fileID: 1819458534}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1821810662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 419372, guid: e75fd197adcb96244b6119702f7370ba, type: 3}

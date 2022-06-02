@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     public ControllerManager controllerManager;
 
     // Enemy GameObject
-    public GameObject Enemy;
+    [SerializeField]
+    private GameObject Enemy;
     
     void Start(){}
 

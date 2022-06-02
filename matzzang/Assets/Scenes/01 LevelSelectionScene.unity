@@ -13395,6 +13395,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 473116, guid: 48c2cbd8775566f4286aec409e39bda6, type: 3}
   m_PrefabInstance: {fileID: 274348780}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &280331533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6541735960882328710, guid: 7146f875f06b2154b87da873d486074b, type: 3}
+  m_PrefabInstance: {fileID: 6199631376201246024}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &281169787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36135,6 +36140,7 @@ MonoBehaviour:
   UIManager: {fileID: 200620353}
   AudioManager: {fileID: 864154891}
   controllerManager: {fileID: 713470559}
+  Enemy: {fileID: 280331533}
 --- !u!4 &1538245894
 Transform:
   m_ObjectHideFlags: 0
