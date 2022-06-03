@@ -83,7 +83,7 @@ public class EnemyAimV3Line : MonoBehaviour
 
     IEnumerator FireInterval()
     {
-        yield return new WaitForSeconds(Random.Range(standIntervalTime * (1- IntervalTimeOffsetNegative), standIntervalTime * (1 + IntervalTimeOffsetPositive)));
+        yield return new WaitForSeconds(Random.Range(standIntervalTime * (1- IntervalTimeOffsetNegative), standIntervalTime * (1 + IntervalTimeOffsetPositive))/timeZoomRate);
         
         //isStopMove = true;
         //yield return new WaitForSeconds(0.01f);
