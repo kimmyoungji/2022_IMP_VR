@@ -23418,6 +23418,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RestartBtnHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 2643552520756078643, guid: 348e620061fc00f44ba849c78cc1a4b0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3314766009939783603, guid: 348e620061fc00f44ba849c78cc1a4b0, type: 3}
       propertyPath: m_Camera
       value: 
@@ -36135,10 +36139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41670b7ae96096141bb5ff078d65c6ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemeyHealth: 160
-  PlayerHealth: 160
-  UIManager: {fileID: 200620353}
-  AudioManager: {fileID: 864154891}
+  UIManager: {fileID: 200620354}
+  AudioManager: {fileID: 864154892}
   controllerManager: {fileID: 713470559}
   Enemy: {fileID: 280331533}
 --- !u!4 &1538245894

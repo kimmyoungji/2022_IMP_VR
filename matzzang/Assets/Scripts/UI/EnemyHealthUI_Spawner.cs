@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class EnemyHealthUI_Spawner : MonoBehaviour
 {
-    public GameObject UIManager;
-    public GameObject EnemyHealthUIprefab;
+    [SerializeField]
+    private UIManager UIManager;
+
+    [SerializeField]
+    private GameObject EnemyHealthUIprefab;
     private GameObject EnemyHealthUI;
 
-    // Start is called before the first frame update
     void Start()
     {
+        UIManager = FindObjectOfType<UIManager>();
         EnemyHealthUI = Instantiate(EnemyHealthUIprefab,transform);
         UIManager.SendMessage("setEnemyHealthUI",EnemyHealthUI);
     }

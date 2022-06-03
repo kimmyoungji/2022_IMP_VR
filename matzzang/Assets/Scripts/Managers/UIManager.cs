@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager2 : MonoBehaviour
+public class UIManager : MonoBehaviour
 {   
     // UI Array
     private GameObject[] UIs = new GameObject[6];
-    public GameManager gameManager;
+    
+    [SerializeField]
+    GameManager gameManager;
 
     void Start()
     {
+        // get Game Manager
+        gameManager = FindObjectOfType<GameManager>();
+
         //UIs[3] = GameObject.Find("04 ResutCanvas_Win");
         UIs[3] = transform.GetChild(0).gameObject;
         UIs[3].SetActive(false);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class AirPlaneFlyForThrower : MonoBehaviour
+public class AirPlaneFlyForThrower_v1 : MonoBehaviour
 {
     //GameManager
     [SerializeField]

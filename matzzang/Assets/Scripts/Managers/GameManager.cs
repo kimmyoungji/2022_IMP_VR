@@ -7,49 +7,64 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     // health 0~160
-    public float EnemeyHealth = 160; // Enemy ealth: min 0 ~ max 160
-    public float PlayerHealth = 160; // Player Health: min 0 ~ max 160
-    private bool isHealthUpdated;
+    private const float MaxEnemeyHealth = 160; // Enemy ealth: min 0 ~ max 160
+    private const float MaxPlayerHealth = 160; // Player Health: min 0 ~ max 160
+    private float EnemeyHealth = MaxEnemeyHealth;
+    private float PlayerHealth = MaxPlayerHealth;
+    //private bool isHealthUpdated;
 
     // game result
     private enum GameResult { win, lose, draw, proceeding}
     private GameResult gameResult;
 
-    public GameObject UIManager;
-    public GameObject AudioManager;
-    public ControllerManager controllerManager;
+    //UI Manager
+    [SerializeField]
+    private UIManager UIManager;
+    
+    // Audio Manager
+    [SerializeField]
+    private AudioManager AudioManager;
+    
+    // Controller Manager
+    [SerializeField]
+    private ControllerManager controllerManager;
 
     // Enemy GameObject
     [SerializeField]
     private GameObject Enemy;
     
-    void Start(){}
+    void Start(){
+        UIManager = FindObjectOfType<UIManager>();
+        AudioManager = FindObjectOfType<AudioManager>();
+        controllerManager = FindObjectOfType<ControllerManager>();
+        Enemy = GameObject.FindWithTag("Enemy");
+    }
 
     public void Update()
     {
-            // compare Player's and Enemy's Health
-            if(PlayerHealth > 0 && EnemeyHealth <= 0)
-            {
-                gameResult = GameResult.win;
-                UIManager.SendMessage("Show_04ResultUI_Win");
-                controllerManager.SendMessage("setHandRayActive",true);
-                Enemy.SetActive(false);
-            }
-            else if(PlayerHealth <= 0 && EnemeyHealth > 0)
-            {
-                gameResult = GameResult.lose;
-                UIManager.SendMessage("Show_05ResultUI_Lose");
-                controllerManager.SendMessage("setHandRayActive",true);
-                Enemy.SetActive(false);
-            }
-            else if(PlayerHealth <= 0 && EnemeyHealth <= 0){
-                gameResult = GameResult.draw;
-                UIManager.SendMessage("Show_06ResultUI_Draw");
-                controllerManager.SendMessage("setHandRayActive",true);
-                Enemy.SetActive(false);
-            }
-            else
-                gameResult = GameResult.proceeding;    
+        // compare Player's and Enemy's Health
+        if(PlayerHealth > 0 && EnemeyHealth <= 0)
+        {
+            gameResult = GameResult.win;
+            UIManager.SendMessage("Show_04ResultUI_Win");
+            controllerManager.SendMessage("setHandRayActive",true);
+            Enemy.SetActive(false);
+        }
+        else if(PlayerHealth <= 0 && EnemeyHealth > 0)
+        {
+            gameResult = GameResult.lose;
+            UIManager.SendMessage("Show_05ResultUI_Lose");
+            controllerManager.SendMessage("setHandRayActive",true);
+            Enemy.SetActive(false);
+        }
+        else if(PlayerHealth <= 0 && EnemeyHealth <= 0){
+            gameResult = GameResult.draw;
+            UIManager.SendMessage("Show_06ResultUI_Draw");
+            controllerManager.SendMessage("setHandRayActive",true);
+            Enemy.SetActive(false);
+        }
+        else
+            gameResult = GameResult.proceeding;    
     }
 
 

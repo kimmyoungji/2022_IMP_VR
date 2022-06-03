@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealthUI_1 : MonoBehaviour
+public class EnemyHealthUI : MonoBehaviour
 {
     public RectTransform Fill;
     private float FillWidth;

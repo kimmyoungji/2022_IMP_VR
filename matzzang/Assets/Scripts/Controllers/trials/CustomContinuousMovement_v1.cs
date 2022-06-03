@@ -7,7 +7,7 @@ using Unity.XR.CoreUtils;
 
 
 // our own implementation of continuous movement in VR
-public class CustomContinuousMovement : MonoBehaviour
+public class CustomContinuousMovement_v1 : MonoBehaviour
 {
     [SerializeField]
     private float speed;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager_v1 : MonoBehaviour
 {
     private GameObject[] HealthUIobject = new GameObject[2];
     private GameObject[] ResultUIobject = new GameObject[2];
@@ -29,11 +29,6 @@ public class UIManager : MonoBehaviour
        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Update_02PlayerHealthUI(int PlayernewHealth){
         RectTransform fill = HealthUIobject[1].transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<RectTransform>();

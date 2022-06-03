@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Enemy_Collision : MonoBehaviour
 {
-    public GameManager gameManager;
+    [SerializeField]
+    GameManager GameManager;
     public float EnemyHealthLoss = 20f;
     //[SerializeField] AudioData hitAudio;
 
+    private void Start() {
+        GameManager = GameObject.FindObjectOfType<GameManager>();
+    }
+
     private void OnCollisionEnter(Collision other) {
         if(other.collider.CompareTag("Bottle")){
-            gameManager.SendMessage("UpdateEnemyHealth",EnemyHealthLoss);
+            GameManager.SendMessage("UpdateEnemyHealth",EnemyHealthLoss);
             //AudioManager.Instance.PlayRandomSFX(hitAudio);
         }
     }

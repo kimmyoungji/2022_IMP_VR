@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class EnemyAimV3Line : MonoBehaviour
 {
+    // for animming
     [Header("Aim")]
     public GameObject[] bulletPrefabs;
+    public GameObject[] boxingPrefabs;
+    public GameObject[] realThrowPrefabs;
     public Transform target;
     public float targetYOffset = 0;
     public Transform point;
+
+    int prefabsTypeNum = 0;
+    private ArrayList PrefabList = new ArrayList(5);
 
     private float YthanTarget = 2f;
     [SerializeField, Range(0.5f, 5f)] float YthanTargetStandValue;
     [SerializeField, Range(0f, 2.5f)] float YthanTargetOffset = 0;
 
+
+    // shooting interval time
     public float standIntervalTime = 1f;
     [SerializeField, Range(0f, 0.9f)] float IntervalTimeOffsetNegative = 0f;
     [SerializeField, Range(0f, 0.9f)] float IntervalTimeOffsetPositive = 0f;
+    private float randomTime;
 
     // line
     [Header("Prediction")]
@@ -32,23 +41,43 @@ public class EnemyAimV3Line : MonoBehaviour
     [Header("SlowMotion")]
     public bool isSlowMotion = true;
     public float timeZoomRate = 0.5F;
-    bool isStopMove;
+    //bool isStopMove;
 
-    //void Start()
-    //{
-    //    InvokeRepeating(nameof(Shoot), 0, interval);
-    //}
+    // Fix low frame rate issue in slow motion.
+    float defultFixedDeltaTime;
+
+    void Awake()
+    {
+        defultFixedDeltaTime = Time.fixedDeltaTime;
+        target = GameObject.FindGameObjectWithTag("MainCamera").transform;
+    }
+
+    public Animator animator;
+
+    void Start()
+    {
+        if (bulletPrefabs.Length > 0)
+        {
+            PrefabList.Add(bulletPrefabs);
+            prefabsTypeNum++;
+        }
+        if (boxingPrefabs.Length > 0)
+        {
+            PrefabList.Add(boxingPrefabs);
+            prefabsTypeNum++;
+        }
+        if (realThrowPrefabs.Length > 0)
+        {
+            PrefabList.Add(realThrowPrefabs);
+            prefabsTypeNum++;
+        }
+    }
 
     private void Update()
     {
         //gameObject.SendMessage("IsStopMove", isStopMove);
 
-        if (isSlowMotion)
-        {
-            if (Time.timeScale != timeZoomRate)
-                Time.timeScale = timeZoomRate;
-        }
-
+        SlowMotion();
         StartCoroutine(nameof(FireInterval));
     }
 
@@ -59,14 +88,25 @@ public class EnemyAimV3Line : MonoBehaviour
         //isStopMove = true;
         //yield return new WaitForSeconds(0.01f);
 
-        Shoot();
+        //Shoot();
+        animator.SetBool("Throw",true);
+        StartCoroutine("waitForAnimation");
 
         //yield return new WaitForSeconds(0.01f);
         //isStopMove = false;
 
         StopCoroutine(nameof(FireInterval));
+    }
 
-        
+    IEnumerator waitForAnimation(){
+        yield return new WaitForSeconds(0.24f);
+        Shoot();
+        StartCoroutine("setThrowFalse");
+    }
+
+    IEnumerator setThrowFalse(){
+        yield return new WaitForSeconds(randomTime*0.5f);
+        animator.SetBool("Throw",false);
     }
 
     void Shoot()
@@ -74,36 +114,39 @@ public class EnemyAimV3Line : MonoBehaviour
         YthanTarget = Random.Range(YthanTargetStandValue - YthanTargetOffset, YthanTargetStandValue + YthanTargetOffset);
         YthanTarget = Mathf.Clamp(YthanTarget, 0.5f, 5f);
 
-        CalculateData();
+        CalculateDate();
 
-        // if (isDisplayLine)
-        // {
-        //     // Pre-judgment
-        //     //Instantiate(predictionPrefabs);
-        //     Vector3 predictionVelocity = velocity;
-        //     Vector3 predictionPosition = point.position;
-        //     float predictionInterval = Mathf.Abs(point.position.x - target.position.x) / Mathf.Abs(velocity.x) / predictionCount;
-        //     for (int i = 0; i < predictionCount; i++)
-        //     {
-        //         predictionPosition += predictionVelocity * predictionInterval + new Vector3(0, 0.5f * -Gravity * predictionInterval * predictionInterval);  // Move point
-        //         predictionVelocity += new Vector3(0, -Gravity * predictionInterval);  // gravity
-        //         GameObject line = Instantiate(predictionPrefabs, predictionPosition, Quaternion.identity, transform);
-        //         Destroy(line, standIntervalTime);
-        //     }
-        // }
+        if (isDisplayLine)
+        {
+            // Pre-judgment
+            //Instantiate(predictionPrefabs);
+            Vector3 predictionVelocity = velocity;
+            Vector3 predicrionPosition = point.position;
+            float predictionInterval = Mathf.Abs(point.position.x - target.position.x) / Mathf.Abs(velocity.x) / predictionCount;
+            for (int i = 0; i < predictionCount; i++)
+            {
+                predicrionPosition += predictionVelocity * predictionInterval + new Vector3(0, 0.5f * -Gravity * predictionInterval * predictionInterval);  // Move point
+                predictionVelocity += new Vector3(0, -Gravity * predictionInterval);  // gravity
+                GameObject line = Instantiate(predictionPrefabs, predicrionPosition, Quaternion.identity, transform);
+                Destroy(line, standIntervalTime);
+            }
+        }
 
-        // Fire
-        point.rotation = Quaternion.FromToRotation(Vector3.up, velocity);
-
-        int a = Random.Range(0, bulletPrefabs.Length);
-        GameObject bullet = Instantiate(bulletPrefabs[a], point.position, Quaternion.identity);
-        //bullet.GetComponent<EnemyBullet3Bottle>().Shoot(velocity);
-        //bullet.GetComponent<Rigidbody2D>().velocity = velocity;
-        bullet.SendMessage("Shoot", velocity);
-        bullet.SendMessage("FiredByOtherRotation", (transform.position - velocity).sqrMagnitude);
+        if(prefabsTypeNum == 1)
+        {
+            Fire((GameObject[])PrefabList[0]);
+        }
+        else if (prefabsTypeNum == 2)
+        {
+            Fire((GameObject[])PrefabList[0], (GameObject[])PrefabList[1]);
+        }
+        else if (prefabsTypeNum == 3)
+        {
+            Fire((GameObject[])PrefabList[0], (GameObject[])PrefabList[1], (GameObject[])PrefabList[2]);
+        }
     }
 
-    void CalculateData()
+    void CalculateDate()
     {
         Gravity = Mathf.Abs(Physics.gravity.y * gravityScale);
 
@@ -127,6 +170,86 @@ public class EnemyAimV3Line : MonoBehaviour
         velocity = speed + time_1 * Gravity * Vector3.up;
     }
 
+    private void Fire(GameObject[] tyope1)
+    {
+        point.rotation = Quaternion.FromToRotation(Vector3.up, velocity);
+
+        GameObject bullet;
+
+        int p1 = Random.Range(0, tyope1.Length);
+        bullet = Instantiate(tyope1[p1], point.position, Quaternion.identity);
+
+        bullet.SendMessage("Shoot", velocity);
+        bullet.SendMessage("FiredByOtherRotation", (transform.position - velocity).sqrMagnitude);
+    }
+
+    private void Fire(GameObject[] tyope1, GameObject[] tyope2)
+    {
+        point.rotation = Quaternion.FromToRotation(Vector3.up, velocity);
+
+        GameObject bullet;
+
+        int p0 = Random.Range(0, 2);
+
+        if (p0 < 1)
+        {
+            int p1 = Random.Range(0, tyope1.Length);
+            bullet = Instantiate(tyope1[p1], point.position, Quaternion.identity);
+        }
+        else
+        {
+            int p2 = Random.Range(0, tyope2.Length);
+            bullet = Instantiate(tyope2[p2], point.position, Quaternion.identity);
+        }
+
+        bullet.SendMessage("Shoot", velocity);
+        bullet.SendMessage("FiredByOtherRotation", (transform.position - velocity).sqrMagnitude);
+    }
+
+    private void Fire(GameObject[] tyope1, GameObject[] tyope2, GameObject[] tyope3)
+    {
+        point.rotation = Quaternion.FromToRotation(Vector3.up, velocity);
+
+        GameObject bullet;
+
+        int p0 = Random.Range(0, 6);
+
+        if (p0 < 2)
+        {
+            int p1 = Random.Range(0, tyope1.Length);
+            bullet = Instantiate(tyope1[p1], point.position, Quaternion.identity);
+        }
+        else if(p0 >= 2 && p0 < 5)
+        {
+            int p2 = Random.Range(0, tyope2.Length);
+            bullet = Instantiate(tyope2[p2], point.position, Quaternion.identity);
+        }
+        else
+        {
+            int p3 = Random.Range(0, tyope3.Length);
+            bullet = Instantiate(tyope3[p3], point.position, Quaternion.identity);
+        }
+        
+        bullet.SendMessage("Shoot", velocity);
+        bullet.SendMessage("FiredByOtherRotation", (transform.position - velocity).sqrMagnitude);
+        
+    }
+
+    void SlowMotion()
+    {
+        if (isSlowMotion)
+        {
+            if (Time.timeScale != timeZoomRate)
+            {
+                Time.timeScale = timeZoomRate;
+                Time.fixedDeltaTime = defultFixedDeltaTime * Time.timeScale;
+            }
+        }
+        else
+        {
+            Time.timeScale = 1F;
+        }
+    }
 
     //private void OnEnable()
     //{
@@ -136,11 +259,11 @@ public class EnemyAimV3Line : MonoBehaviour
     //    }
     //}
 
-    private void OnDisable()
-    {
-        if (Time.timeScale != 1F)
-        {
-            Time.timeScale = 1F;
-        }
-    }
+    // private void OnDisable()
+    // {
+    //     if (Time.timeScale != 1F)
+    //     {
+    //         Time.timeScale = 1F;
+    //     }
+    // }
 }

@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class IntroUI_Spawner : MonoBehaviour
 {
-    public GameObject UIManager;
-    public GameObject introUIprefab;
+    [SerializeField]
+    private UIManager UIManager;
+
+    [SerializeField]
+    private GameObject introUIprefab;
     private GameObject introUI;
 
     // Start is called before the first frame update
     void Start()
     {
+        UIManager = FindObjectOfType<UIManager>();
         introUI = Instantiate(introUIprefab,transform);
         UIManager.SendMessage("setIntroUI",introUI);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

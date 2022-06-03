@@ -295,9 +295,9 @@ GameObject:
   m_Component:
   - component: {fileID: 822992671196485807}
   - component: {fileID: 822992671196485804}
-  - component: {fileID: 822992671196485805}
+  - component: {fileID: 1842159651352753397}
   - component: {fileID: 822992671196485806}
-  - component: {fileID: 4650424276971995622}
+  - component: {fileID: 1463837093395498818}
   m_Layer: 5
   m_Name: 02 PlayerHealthUICanvas
   m_TagString: HealthUI
@@ -347,7 +347,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &822992671196485805
+--- !u!114 &1842159651352753397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4650424276971995622
+--- !u!114 &1463837093395498818
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
