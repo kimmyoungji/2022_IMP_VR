@@ -8,45 +8,38 @@ public class AirPlaneFlyForThrower : MonoBehaviour
     //GameManager
     public GameObject GameManager;
     
-    [SerializeField] float flySpeed = 5.0f;
+    [SerializeField] float flySpeed = 2.0f;
     [SerializeField] AudioData hitAudio;
 
+    // Enemy Movement var
     Vector3 originPos;
     float distance;
     Vector3 randomPos;
-
-    //GameObject[] Grabs;
-    //float grabNum;
-    // float score = 0;
-    // [SerializeField] int aimScore = 20;
-    // float scoreLast;
-    //float objectLast;
-
-    //WaitForSeconds waitForSeconds;
     bool isStopMove = false;
 
+    // Health loss
     public float EnemyHealthLoss = 20;
 
-    void Awake()
-    {
-        originPos = this.gameObject.transform.position;
-        //Grabs = GameObject.FindGameObjectsWithTag("Trash");
-    }
+    // Animator
+    public Animator animator;
+    private Vector3 initGap;
+    private Vector3 gap;
 
-    private void Start()
-    {
+    // start
+    private void Start(){ 
+        animator = GetComponent<Animator>();
+        originPos = this.gameObject.transform.position;
         GetRandomPosition();
-        //scoreLast = aimScore;
-        //grabNum = Grabs.Length;
-        //objectLast = Grabs.Length;
-        //waitForSeconds = new WaitForSeconds(3f);
     }
 
     void Update()
     {
         if (!isStopMove)
         {
-            distance = (transform.position - randomPos).sqrMagnitude;
+            gap = transform.position - randomPos;
+            float temp_x = ( gap.x/initGap.x );
+            animator.SetFloat("WalkLeft",temp_x);
+            distance = (gap).sqrMagnitude;
             if (distance > 0.01f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, randomPos, flySpeed * Time.deltaTime);
@@ -61,6 +54,8 @@ public class AirPlaneFlyForThrower : MonoBehaviour
     void GetRandomPosition()
     {
         randomPos = new Vector3(Random.Range(-3f, 3f), originPos.y, originPos.z);
+        initGap = transform.position - randomPos;
+        animator.SetFloat("isWalking",initGap.x);
         //randomPos = new Vector3(Random.Range(-10f, 10f), Random.Range(1f, 8f), originPos.z);
         //randomPos = new Vector3(Random.Range(-10f, 10f), 5, originPos.z);
     }

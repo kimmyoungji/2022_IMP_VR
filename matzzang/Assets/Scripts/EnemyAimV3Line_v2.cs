@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAimV3Line_v2 : MonoBehaviour
 {
+    // for animming
     [Header("Aim")]
     public GameObject[] bulletPrefabs;
     public GameObject[] boxingPrefabs;
@@ -19,9 +20,12 @@ public class EnemyAimV3Line_v2 : MonoBehaviour
     [SerializeField, Range(0.5f, 5f)] float YthanTargetStandValue;
     [SerializeField, Range(0f, 2.5f)] float YthanTargetOffset = 0;
 
+
+    // shooting interval time
     public float standIntervalTime = 1f;
     [SerializeField, Range(0f, 0.9f)] float IntervalTimeOffsetNegative = 0f;
     [SerializeField, Range(0f, 0.9f)] float IntervalTimeOffsetPositive = 0f;
+    private float randomTime;
 
     // line
     [Header("Prediction")]
@@ -38,6 +42,8 @@ public class EnemyAimV3Line_v2 : MonoBehaviour
     public bool isSlowMotion = true;
     public float timeZoomRate = 0.5F;
     //bool isStopMove;
+
+    public Animator animator;
 
     void Awake()
     {
@@ -78,12 +84,25 @@ public class EnemyAimV3Line_v2 : MonoBehaviour
         //isStopMove = true;
         //yield return new WaitForSeconds(0.01f);
 
-        Shoot();
+        //Shoot();
+        animator.SetBool("Throw",true);
+        StartCoroutine("waitForAnimation");
 
         //yield return new WaitForSeconds(0.01f);
         //isStopMove = false;
 
         StopCoroutine(nameof(FireInterval));
+    }
+
+    IEnumerator waitForAnimation(){
+        yield return new WaitForSeconds(0.24f);
+        Shoot();
+        StartCoroutine("setThrowFalse");
+    }
+
+    IEnumerator setThrowFalse(){
+        yield return new WaitForSeconds(randomTime*0.5f);
+        animator.SetBool("Throw",false);
     }
 
     void Shoot()
