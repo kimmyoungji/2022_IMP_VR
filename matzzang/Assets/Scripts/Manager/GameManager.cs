@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     // Enemy GameObject
     [SerializeField]
     private GameObject Enemy;
+
+    public Animator enemyAnimation;
     
     void Start(){}
 
@@ -49,7 +51,8 @@ public class GameManager : MonoBehaviour
                 Enemy.SetActive(false);
             }
             else
-                gameResult = GameResult.proceeding;    
+                gameResult = GameResult.proceeding;
+
     }
 
 
@@ -64,6 +67,7 @@ public class GameManager : MonoBehaviour
         EnemeyHealth -= EHealthLoss;
         Debug.Log("Enemy Health: "+ EnemeyHealth + " , Player Health: " + PlayerHealth );
         UIManager.SendMessage("Update_03EnemyHealthUI",EnemeyHealth);
+        enemyAnimation.SetTrigger("Attacked");
     }
 
     // load level scene

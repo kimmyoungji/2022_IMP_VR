@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4485922, g: 0.49487406, b: 0.555429, a: 1}
+  m_IndirectSpecularColor: {r: 0.4485923, g: 0.49487436, b: 0.55543, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -36223,6 +36223,7 @@ MonoBehaviour:
   AudioManager: {fileID: 864154891}
   controllerManager: {fileID: 713470559}
   Enemy: {fileID: 1819458535}
+  enemyAnimation: {fileID: 1819458538}
 --- !u!4 &1538245894
 Transform:
   m_ObjectHideFlags: 0
@@ -48653,6 +48654,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 713470553}
+    - target: {fileID: 5253462254918624800, guid: c9dfc799d51c9d34c923a5e03c828b7b, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5720333949927157768, guid: c9dfc799d51c9d34c923a5e03c828b7b, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -48702,6 +48707,11 @@ PrefabInstance:
 --- !u!1 &1819458535 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4911568777767004850, guid: c9dfc799d51c9d34c923a5e03c828b7b, type: 3}
+  m_PrefabInstance: {fileID: 1819458534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1819458538 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5253462254918624800, guid: c9dfc799d51c9d34c923a5e03c828b7b, type: 3}
   m_PrefabInstance: {fileID: 1819458534}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1821810662 stripped
