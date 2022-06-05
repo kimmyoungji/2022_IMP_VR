@@ -13,5 +13,6 @@ public class ForceField : MonoBehaviour
         Vector3 realVelocity = Quaternion.AngleAxis(rotationTarget.rotation.eulerAngles.y,Vector3.up) * boxingController.controllerVelocity;
 
         collision.transform.GetComponent<Rigidbody>().AddForce(realVelocity * addForceMultiplier, ForceMode.Impulse);
+        boxingController.SendMessage("GetHaptic");
     }
 }

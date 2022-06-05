@@ -12,14 +12,14 @@ public class EnemyBullet3Bottle : MonoBehaviour
     public bool isSlowMotion = true;
     public float timeZoomRate = 0.5F;
 
-    IEnumerator Start()
-    {
-        yield return new WaitForSeconds(changeWaitTime);
+    //IEnumerator Start()
+    //{
+    //    yield return new WaitForSeconds(changeWaitTime);
 
-        GetComponent<SphereCollider>().enabled = false;
-        GetComponent<MeshCollider>().enabled = true;
-        GetComponent<MeshCollider>().isTrigger = false;
-    }
+    //    GetComponent<SphereCollider>().enabled = false;
+    //    GetComponent<MeshCollider>().enabled = true;
+    //    GetComponent<MeshCollider>().isTrigger = false;
+    //}
 
     public void Shoot(Vector3 velocity)
     {
@@ -32,6 +32,20 @@ public class EnemyBullet3Bottle : MonoBehaviour
     //{
     //    gameObject.SetActive(false);
     //}
+
+    private void FireParationA()
+    {
+        StartCoroutine(nameof(FireParationB));
+    }
+    IEnumerator FireParationB()
+    {
+        yield return new WaitForSeconds(changeWaitTime);
+
+        GetComponent<SphereCollider>().enabled = false;
+        GetComponent<MeshCollider>().enabled = true;
+        GetComponent<MeshCollider>().isTrigger = false;
+    }
+
 
     private void Update()
     {
