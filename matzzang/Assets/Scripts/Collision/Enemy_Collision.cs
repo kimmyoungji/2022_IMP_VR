@@ -13,10 +13,16 @@ public class Enemy_Collision : MonoBehaviour
         GameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
-    private void OnCollisionEnter(Collision other) {
-        if(other.collider.CompareTag("Bottle")){
-            GameManager.SendMessage("UpdateEnemyHealth",EnemyHealthLoss);
+    private void OnCollisionEnter(Collision other) 
+    {
+        if (other.collider.CompareTag("Bottle"))
+        {
+            GameManager.SendMessage("UpdateEnemyHealth", EnemyHealthLoss);
             //AudioManager.Instance.PlayRandomSFX(hitAudio);
+        }
+        else if (other.collider.CompareTag("BoxingFragment"))
+        {
+            GameManager.SendMessage("UpdateEnemyHealth", EnemyHealthLoss * 0.25);
         }
     }
 }

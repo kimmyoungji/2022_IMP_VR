@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class characterCtrl_collision : MonoBehaviour
+public class CharacterCtrl_collision : MonoBehaviour
 {   
     [SerializeField]
     GameManager GameManager;

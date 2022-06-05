@@ -12,7 +12,7 @@ public class CustomContinuousMovement : MonoBehaviour
     public XRNode inputSource;
     public float gravity = -9.81f;
     public LayerMask groundLayer;
-    public float additionalHeight = 0.2f;  // ����߶�
+    public float additionalHeight = 0.2f;
 
     // Get slow motin value
     public EnemyAimV3Line enemyAimV3Line;
@@ -85,20 +85,23 @@ public class CustomContinuousMovement : MonoBehaviour
 
     private void GetNewSlowMotionValue()
     {
-        if (enemyAimV3Line.isSlowMotion)
+        if (enemyAimV3Line)
         {
-            if (slowMotionValue != enemyAimV3Line.timeZoomRate)
+            if (enemyAimV3Line.isSlowMotion)
             {
-                slowMotionValue = enemyAimV3Line.timeZoomRate;
+                if (slowMotionValue != enemyAimV3Line.timeZoomRate)
+                {
+                    slowMotionValue = enemyAimV3Line.timeZoomRate;
 
-                speed = originSpeed / slowMotionValue;
-                actionBasedSnapTurnProvider.debounceTime = originTurnInterval * slowMotionValue;
+                    speed = originSpeed / slowMotionValue;
+                    actionBasedSnapTurnProvider.debounceTime = originTurnInterval * slowMotionValue;
+                }
             }
-        }
-        else
-        {
-            speed = originSpeed;
-            actionBasedSnapTurnProvider.debounceTime = originTurnInterval;
+            else
+            {
+                speed = originSpeed;
+                actionBasedSnapTurnProvider.debounceTime = originTurnInterval;
+            }
         }
     }
 }

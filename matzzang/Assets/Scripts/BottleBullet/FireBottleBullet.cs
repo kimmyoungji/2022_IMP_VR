@@ -8,6 +8,7 @@ public class FireBottleBullet : MonoBehaviour
     public bool IsGrabing { get; set; } = false;
     public GameObject brokenObj;
     public Transform piovt;
+    public float brokenWaitTime = 0.01f;
 
     //[SerializeField] float brokenFroce = 2f;
     [SerializeField] float flySpeed = 40f;
@@ -40,6 +41,12 @@ public class FireBottleBullet : MonoBehaviour
     float Gravity;
     //Vector3 velocity;
 
+    // For Boxing
+    [SerializeField] bool isBoxing = false;
+    [SerializeField] float fireBufferTime = 0.2f;
+
+    // For Real Throw
+    [SerializeField] bool isRealThrow = false;
 
     private void Awake()
     {
@@ -62,7 +69,7 @@ public class FireBottleBullet : MonoBehaviour
             Vector3 predictionVelocity = flySpeed * piovt.forward;
             Vector3 predicrionPosition = piovt.position;
 
-            float predictionInterval = displayInterval / Mathf.Abs(predictionVelocity.x) / predictionCount;
+            float predictionInterval = displayInterval / Mathf.Abs(predictionVelocity.magnitude) / predictionCount;
             //float predictionInterval = Mathf.Abs(firePoint.position.x - Vector3.up.x) / Mathf.Abs(velocity.x) / predictionCount;
 
             for (int i = 0; i < predictionCount; i++)
@@ -72,11 +79,11 @@ public class FireBottleBullet : MonoBehaviour
                 GameObject line = Instantiate(predictionPrefabs, predicrionPosition, Quaternion.identity, transform);
 
 
-                Destroy(line, 0.02f);
-                // if (!IsGrabing)
-                // {
+                Destroy(line, 0.01f);
+                //if (!isGrabing)
+                //{
                 //    Destroy(line);
-                // }
+                //}
             }
         }
     }
@@ -85,23 +92,10 @@ public class FireBottleBullet : MonoBehaviour
     {
         if (this.hasCollided == true) { return; }
 
-        if (IsGrabing == false && !collision.collider.CompareTag("Enemy"))
+        if (IsGrabing == false)
         {
             this.hasCollided = true;
-            //Instantiate(brokenObj, transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));
-            GameObject spawnedBroken = Instantiate(brokenObj, transform.position, transform.rotation);
-            var chrb = spawnedBroken.GetComponentsInChildren<Rigidbody>();
-            foreach (Rigidbody item in chrb)
-            {
-                randomSpeedrate = Random.Range(0.7f, 0.9f);
-                item.velocity = rb.velocity * randomSpeedrate;
-
-                item.angularVelocity = RandomFlyRotation(flySpeed * randomSpeedrate) * 3f;
-            }
-
-            AudioSource.PlayClipAtPoint(brokenSound, transform.position, 0.3f);
-            Destroy(this.gameObject);
-            Destroy(spawnedBroken, 2f);
+            StartCoroutine(nameof(HitResponse));
         }
         else
         {
@@ -116,6 +110,15 @@ public class FireBottleBullet : MonoBehaviour
 
     public void FireRealBottle()
     {
+        if (isRealThrow)
+        {
+            StartCoroutine(nameof(HitResponse));
+            return;
+        }
+
+        GetComponent<MeshCollider>().isTrigger = true;
+        StartCoroutine(nameof(FireBufferTime));
+
         xRGrabInteractable.enabled = false;
         rb.velocity = flySpeed * piovt.forward;
         rb.angularVelocity = piovt.right * 50f + flyRotation;
@@ -126,7 +129,7 @@ public class FireBottleBullet : MonoBehaviour
     {
         angleValueOrigin = speed * angleRate;
 
-        flyRotation = new Vector3(Random.Range(-angleValueOrigin, angleValueOrigin), 
+        flyRotation = new Vector3(Random.Range(-angleValueOrigin, angleValueOrigin),
             Random.Range(-angleValueOrigin, angleValueOrigin), Random.Range(-angleValueOrigin, angleValueOrigin));
 
         return flyRotation;
@@ -136,5 +139,46 @@ public class FireBottleBullet : MonoBehaviour
     {
         RandomFlyRotation(speed);
         rb.angularVelocity = piovt.right * 50f + flyRotation;
+    }
+
+    IEnumerator HitResponse()
+    {
+        yield return new WaitForSeconds(brokenWaitTime);
+
+        //Instantiate(brokenObj, transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));
+        GameObject spawnedBroken = Instantiate(brokenObj, transform.position, transform.rotation);
+        var chrb = spawnedBroken.GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody item in chrb)
+        {
+            randomSpeedrate = Random.Range(0.7f, 0.9f);
+            item.velocity = rb.velocity * randomSpeedrate;
+
+            item.angularVelocity = RandomFlyRotation(flySpeed * randomSpeedrate) * 3f;
+        }
+
+        if (isBoxing == true)
+        {
+            foreach (Transform child in spawnedBroken.transform)
+            {
+                child.tag = "BoxingFragment";
+            }
+        }
+
+        //var playPos = (transform.position - Camera.main.transform.position) * 0.3f;
+        AudioSource.PlayClipAtPoint(brokenSound, Camera.main.transform.position, 0.3f);
+        Destroy(this.gameObject);
+        Destroy(spawnedBroken, 2f);
+    }
+
+    IEnumerator FireBufferTime()
+    {
+        yield return new WaitForSeconds(fireBufferTime);
+
+        GetComponent<MeshCollider>().isTrigger = false;
+    }
+
+    public void HitResponseOther()
+    {
+        StartCoroutine(nameof(HitResponse));
     }
 }

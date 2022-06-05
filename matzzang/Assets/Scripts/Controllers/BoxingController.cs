@@ -5,18 +5,23 @@ using UnityEngine.XR;
 
 public class BoxingController : MonoBehaviour
 {
+
+    public InputDeviceCharacteristics controllerCharacteristics;
+    private InputDevice targetDevice;
+
     public Vector3 controllerVelocity;
-    public Quaternion controllerRotation;
+    UnityEngine.XR.HapticCapabilities capabilities;
+
+    [SerializeField] float hapticAmplitude = 1f;
+    [SerializeField] float hapticDuration = 0.1f;
 
     //public bool IsGrabingBoxing { get; set; } = false;
     [SerializeField] float targetSpeed = 5f;
     [SerializeField] GameObject forceField;
     [SerializeField] float forceFieldContinueTime = 0.2f;
 
-    public InputDeviceCharacteristics controllerCharacteristics;
-    private InputDevice targetDevice;
-
     bool isForceFieldOn = false;
+
 
     void Start()
     {
@@ -50,11 +55,11 @@ public class BoxingController : MonoBehaviour
         {
             targetDevice.TryGetFeatureValue(CommonUsages.gripButton, out bool gripButtonPressed);
             targetDevice.TryGetFeatureValue(CommonUsages.deviceVelocity, out Vector3 deviceVelocityValue);
-            targetDevice.TryGetFeatureValue(CommonUsages.deviceRotation, out Quaternion deviceRotationValue);
+            targetDevice.TryGetHapticCapabilities(out capabilities);
 
             controllerVelocity = deviceVelocityValue;
-            controllerRotation = deviceRotationValue;
 
+            //var speed = deviceVelocityValue.sqrMagnitude;
             var speed = deviceVelocityValue.sqrMagnitude;
 
             if (gripButtonPressed && speed >= targetSpeed)
@@ -64,16 +69,22 @@ public class BoxingController : MonoBehaviour
             }
             else
             {
-                if(isForceFieldOn)
+                if (isForceFieldOn)
                     StartCoroutine(ForceFieldContinueTime());
             }
         }
 
         IEnumerator ForceFieldContinueTime()
         {
-            yield return new WaitForSeconds(forceFieldContinueTime);
+            yield return new WaitForSecondsRealtime(forceFieldContinueTime);  // WaitForSecondsRealtime will not get effect by slow motion. And 0.1 is good.
             isForceFieldOn = false;
             forceField.SetActive(false);
         }
+    }
+
+    public void GetHaptic()
+    {
+        uint channel = 0;
+        targetDevice.SendHapticImpulse(channel, hapticAmplitude, hapticDuration);
     }
 }
