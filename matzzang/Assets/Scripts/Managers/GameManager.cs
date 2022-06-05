@@ -32,18 +32,27 @@ public class GameManager : MonoBehaviour
     // Enemy GameObject
     [SerializeField]
     private GameObject Enemy;
+
+    private Animator enemyAnimator;
     
     void Start(){
         UIManager = FindObjectOfType<UIManager>();
         AudioManager = FindObjectOfType<AudioManager>();
         controllerManager = FindObjectOfType<ControllerManager>();
         Enemy = GameObject.FindWithTag("Enemy");
+        enemyAnimator = Enemy.GetComponent<Animator>();
     }
 
     public void Update()
     {
+        if (Input.GetKey(KeyCode.Space)) 
+        {
+            Debug.Log("Attacked");
+            UpdateEnemyHealth(0);
+        }
+        
         // compare Player's and Enemy's Health
-        if(PlayerHealth > 0 && EnemeyHealth <= 0)
+        if (PlayerHealth > 0 && EnemeyHealth <= 0)
         {
             gameResult = GameResult.win;
             UIManager.SendMessage("Show_04ResultUI_Win");
@@ -76,6 +85,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void UpdateEnemyHealth( float EHealthLoss){
+        enemyAnimator.SetTrigger("Attacked");
         EnemeyHealth -= EHealthLoss;
         Debug.Log("Enemy Health: "+ EnemeyHealth + " , Player Health: " + PlayerHealth );
         UIManager.SendMessage("Update_03EnemyHealthUI",EnemeyHealth);
