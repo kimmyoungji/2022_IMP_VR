@@ -11,6 +11,8 @@ TagManager:
   - HealthUI
   - ResultUI
   - Bottle
+  - Bullet
+  - BoxingFragment
   layers:
   - Default
   - TransparentFX
@@ -18,14 +20,14 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Body
+  - Grab
+  - Boxing
+  - ForceField
+  - Saloon
+  - Head
+  - Teleportation
   - 
   - 
   - 
