@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4485923, g: 0.49487436, b: 0.55543, a: 1}
+  m_IndirectSpecularColor: {r: 0.44859183, g: 0.49487388, b: 0.5554287, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -6652,7 +6652,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &162275182 stripped
 GameObject:
@@ -7322,7 +7322,7 @@ Transform:
   - {fileID: 780760607}
   - {fileID: 1777482281}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &202948676
 PrefabInstance:
@@ -13305,7 +13305,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
       propertyPath: m_LocalPosition.x
@@ -21520,7 +21520,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &592993089
 PrefabInstance:
@@ -22548,7 +22548,7 @@ Transform:
   m_Children:
   - {fileID: 1459799918}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &713470554
 MonoBehaviour:
@@ -24538,7 +24538,7 @@ Transform:
   - {fileID: 1669405481}
   - {fileID: 1927194043}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &864749715 stripped
 Transform:
@@ -36290,7 +36290,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1539013838
 PrefabInstance:
@@ -52657,7 +52657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1770642170221778366, guid: c32e881b920ff4142a28f7ad8bd0ebaa, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1770642170221778366, guid: c32e881b920ff4142a28f7ad8bd0ebaa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52703,5 +52703,9 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 713470553}
+    - target: {fileID: 6608506035019192295, guid: c32e881b920ff4142a28f7ad8bd0ebaa, type: 3}
+      propertyPath: timeZoomRate
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c32e881b920ff4142a28f7ad8bd0ebaa, type: 3}
