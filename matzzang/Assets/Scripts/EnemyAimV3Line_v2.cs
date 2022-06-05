@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAimV3Line : MonoBehaviour
+public class EnemyAimV3Line_v2 : MonoBehaviour
 {
     // for animming
     [Header("Aim")]
@@ -43,24 +43,9 @@ public class EnemyAimV3Line : MonoBehaviour
     public float timeZoomRate = 0.5F;
     //bool isStopMove;
 
-    // Fix low frame rate issue in slow motion.
-    float defultFixedDeltaTime;
-
-    //control the ratio of bottle type
-    public int randomrange = 10;
-
     public Animator animator;
 
     void Awake()
-    {
-        defultFixedDeltaTime = Time.fixedDeltaTime;
-        target = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
-    }
-
-    
-
-    void Start()
     {
         if (bulletPrefabs.Length > 0)
         {
@@ -83,13 +68,18 @@ public class EnemyAimV3Line : MonoBehaviour
     {
         //gameObject.SendMessage("IsStopMove", isStopMove);
 
-        SlowMotion();
+        if (isSlowMotion)
+        {
+            if (Time.timeScale != timeZoomRate)
+                Time.timeScale = timeZoomRate;
+        }
+
         StartCoroutine(nameof(FireInterval));
     }
 
     IEnumerator FireInterval()
     {
-        yield return new WaitForSeconds(Random.Range(standIntervalTime * (1- IntervalTimeOffsetNegative), standIntervalTime * (1 + IntervalTimeOffsetPositive))/timeZoomRate);
+        yield return new WaitForSeconds(Random.Range(standIntervalTime * (1- IntervalTimeOffsetNegative), standIntervalTime * (1 + IntervalTimeOffsetPositive)));
         
         //isStopMove = true;
         //yield return new WaitForSeconds(0.01f);
@@ -217,7 +207,8 @@ public class EnemyAimV3Line : MonoBehaviour
         point.rotation = Quaternion.FromToRotation(Vector3.up, velocity);
 
         GameObject bullet;
-        int p0 = Random.Range(0, randomrange);
+
+        int p0 = Random.Range(0, 6);
 
         if (p0 < 2)
         {
@@ -226,36 +217,18 @@ public class EnemyAimV3Line : MonoBehaviour
         }
         else if(p0 >= 2 && p0 < 5)
         {
-            int p3 = Random.Range(0, tyope3.Length);
-            bullet = Instantiate(tyope3[p3], point.position, Quaternion.identity);
-
-        }
-        //high level, more type2
-        else
-        {
             int p2 = Random.Range(0, tyope2.Length);
             bullet = Instantiate(tyope2[p2], point.position, Quaternion.identity);
+        }
+        else
+        {
+            int p3 = Random.Range(0, tyope3.Length);
+            bullet = Instantiate(tyope3[p3], point.position, Quaternion.identity);
         }
         
         bullet.SendMessage("Shoot", velocity);
         bullet.SendMessage("FiredByOtherRotation", (transform.position - velocity).sqrMagnitude);
         
-    }
-
-    void SlowMotion()
-    {
-        if (isSlowMotion)
-        {
-            if (Time.timeScale != timeZoomRate)
-            {
-                Time.timeScale = timeZoomRate;
-                Time.fixedDeltaTime = defultFixedDeltaTime * Time.timeScale;
-            }
-        }
-        else
-        {
-            Time.timeScale = 1F;
-        }
     }
 
     //private void OnEnable()
@@ -266,11 +239,11 @@ public class EnemyAimV3Line : MonoBehaviour
     //    }
     //}
 
-    // private void OnDisable()
-    // {
-    //     if (Time.timeScale != 1F)
-    //     {
-    //         Time.timeScale = 1F;
-    //     }
-    // }
+    private void OnDisable()
+    {
+        if (Time.timeScale != 1F)
+        {
+            Time.timeScale = 1F;
+        }
+    }
 }
