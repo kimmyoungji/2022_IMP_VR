@@ -167,7 +167,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4c80db5cafd39cc4987d9ffb2627cb8c, type: 2}
+  m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -495,19 +495,19 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Base Layer
     m_StateMachine: {fileID: -3284798898533099132}
-    m_Mask: {fileID: 31900000, guid: c5ae8a0d71a497146b8f36002ad909f7, type: 2}
+    m_Mask: {fileID: 31900000, guid: 6d8044b506828424fabbec41c46b7e14, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
-    m_DefaultWeight: 0
+    m_DefaultWeight: 1
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
     m_Name: New Layer
     m_StateMachine: {fileID: 5214133273846084815}
-    m_Mask: {fileID: 31900000, guid: aeedfb5d5d1ed3a4c802c0aae2741706, type: 2}
+    m_Mask: {fileID: 31900000, guid: 008a2439dd31d1a41aa7fafaa44231a7, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -632,7 +632,7 @@ AnimatorState:
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: WalkLeft
   m_TimeParameter: 
 --- !u!1102 &4235905045708254873
 AnimatorState:
@@ -716,7 +716,7 @@ AnimatorState:
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: isWalking
   m_TimeParameter: 
 --- !u!1101 &6154191682638460969
 AnimatorStateTransition:
