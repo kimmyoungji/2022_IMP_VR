@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
     private GameObject Enemy;
 
     private Animator enemyAnimator;
-    
+    private bool isWin = false;  // prevent ui conflict
+
     void Start(){
         UIManager = FindObjectOfType<UIManager>();
         AudioManager = FindObjectOfType<AudioManager>();
@@ -45,32 +46,30 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKey(KeyCode.Space)) 
-        {
-            Debug.Log("Attacked");
-            UpdateEnemyHealth(0);
-        }
-        
         // compare Player's and Enemy's Health
-        if (PlayerHealth > 0 && EnemeyHealth <= 0)
+        if(PlayerHealth > 0 && EnemeyHealth <= 0)
         {
             gameResult = GameResult.win;
             UIManager.SendMessage("Show_04ResultUI_Win");
             controllerManager.SendMessage("setHandRayActive",true);
             Enemy.SetActive(false);
+            isWin = true;
         }
         else if(PlayerHealth <= 0 && EnemeyHealth > 0)
         {
             gameResult = GameResult.lose;
             UIManager.SendMessage("Show_05ResultUI_Lose");
-            controllerManager.SendMessage("setHandRayActive",true);
+            controllerManager.SendMessage("setHandRayActive", true);
             Enemy.SetActive(false);
         }
         else if(PlayerHealth <= 0 && EnemeyHealth <= 0){
-            gameResult = GameResult.draw;
-            UIManager.SendMessage("Show_06ResultUI_Draw");
-            controllerManager.SendMessage("setHandRayActive",true);
-            Enemy.SetActive(false);
+            if (!isWin)
+            {
+                gameResult = GameResult.draw;
+                UIManager.SendMessage("Show_06ResultUI_Draw");
+                controllerManager.SendMessage("setHandRayActive", true);
+                Enemy.SetActive(false);
+            }
         }
         else
             gameResult = GameResult.proceeding;    
@@ -80,6 +79,10 @@ public class GameManager : MonoBehaviour
     // update health
     public void UpdatePlayerHealth( float PHealthLoss){
         PlayerHealth -= PHealthLoss;
+
+        EnemeyHealth = Mathf.Clamp(EnemeyHealth, 0, MaxEnemeyHealth);
+        PlayerHealth = Mathf.Clamp(PlayerHealth, 0, MaxPlayerHealth);
+
         Debug.Log("Enemy Health: "+ EnemeyHealth + " , Player Health: " + PlayerHealth );
         UIManager.SendMessage("Update_02PlayerHealthUI",PlayerHealth);
     }
@@ -87,6 +90,10 @@ public class GameManager : MonoBehaviour
     public void UpdateEnemyHealth( float EHealthLoss){
         enemyAnimator.SetTrigger("Attacked");
         EnemeyHealth -= EHealthLoss;
+
+        EnemeyHealth = Mathf.Clamp(EnemeyHealth, 0, MaxEnemeyHealth);
+        PlayerHealth = Mathf.Clamp(PlayerHealth, 0, MaxPlayerHealth);
+
         Debug.Log("Enemy Health: "+ EnemeyHealth + " , Player Health: " + PlayerHealth );
         UIManager.SendMessage("Update_03EnemyHealthUI",EnemeyHealth);
     }
