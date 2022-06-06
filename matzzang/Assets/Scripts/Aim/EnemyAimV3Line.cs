@@ -47,7 +47,7 @@ public class EnemyAimV3Line : MonoBehaviour
     float defultFixedDeltaTime;
 
     //control the ratio of bottle type
-    public int randomrange = 10;
+    public int randomrange;
 
     public Animator animator;
 
