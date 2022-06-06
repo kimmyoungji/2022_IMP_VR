@@ -53,12 +53,12 @@ public class EnemyAimV3Line : MonoBehaviour
     // Fix low frame rate issue in slow motion.
     float defultFixedDeltaTime;
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
     //control the ratio of bottle type
     public int randomrange;
 
-=======
->>>>>>> 67f57b4320ed172ee93d2b54b672e7901fdb3f99
+//=======
+//>>>>>>> 67f57b4320ed172ee93d2b54b672e7901fdb3f99
     public Animator animator;
 
     void Awake()
@@ -242,7 +242,7 @@ public class EnemyAimV3Line : MonoBehaviour
     {
         point.rotation = Quaternion.FromToRotation(Vector3.up, velocity);
 
-        GameObject bullet;
+        //GameObject bullet;
         int p0 = Random.Range(0, randomrange);
 
         if (p0 < 2)
