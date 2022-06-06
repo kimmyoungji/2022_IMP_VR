@@ -369,7 +369,7 @@ MonoBehaviour:
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 5
+  m_ThrowSmoothingDuration: 6
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -385,7 +385,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 5
+  m_ThrowVelocityScale: 6
   m_ThrowAngularVelocityScale: 1
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 0
@@ -421,12 +421,12 @@ MonoBehaviour:
   piovt: {fileID: 8434130881411002486}
   brokenWaitTime: 0.005
   flySpeed: 20
-  brokenSound: {fileID: 8300000, guid: 4f586f51bdf0aba4ca30d90826613031, type: 3}
   gravityScale: 1
   predictionCount: 100
   displayInterval: 30
   predictionPrefabs: {fileID: 3968481479756326357, guid: 7fe56fc0267bdfc469257bc59df845e3, type: 3}
   isDisplayLine: 0
+  isBoxing: 0
   fireBufferTime: 0.05
   isRealThrow: 1
 --- !u!1 &5695356547551318958

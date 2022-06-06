@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject Enemy;
 
+    private Animator enemyAnimator;
     private bool isWin = false;  // prevent ui conflict
 
     void Start(){
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         AudioManager = FindObjectOfType<AudioManager>();
         controllerManager = FindObjectOfType<ControllerManager>();
         Enemy = GameObject.FindWithTag("Enemy");
+        enemyAnimator = Enemy.GetComponent<Animator>();
     }
 
     public void Update()
@@ -86,6 +88,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void UpdateEnemyHealth( float EHealthLoss){
+        enemyAnimator.SetTrigger("Attacked");
         EnemeyHealth -= EHealthLoss;
 
         EnemeyHealth = Mathf.Clamp(EnemeyHealth, 0, MaxEnemeyHealth);

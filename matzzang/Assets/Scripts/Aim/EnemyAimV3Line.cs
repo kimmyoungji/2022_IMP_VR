@@ -12,7 +12,10 @@ public class EnemyAimV3Line : MonoBehaviour
     public Transform target;
     public Transform point;
 
-    public float enemyGrabYOffset = -0.16f;
+    //public float enemyGrabYOffset = -0.16f;
+    private float enemyGrabYOffset = -0.16f;
+
+
     //public float targetYOffset = 0;
     private float targetYOffset = 0;
 
@@ -22,7 +25,7 @@ public class EnemyAimV3Line : MonoBehaviour
     private ArrayList PrefabList = new ArrayList(5);
 
     private float YthanTarget = 2f;
-    [SerializeField, Range(0.1f, 3f)] float YthanTargetStandValue;
+    [SerializeField, Range(0.1f, 0.75f)] float YthanTargetStandValue;
     [SerializeField, Range(0f, 2.5f)] float YthanTargetOffset = 0;
 
 
@@ -30,6 +33,10 @@ public class EnemyAimV3Line : MonoBehaviour
     public float standIntervalTime = 1f;
     [SerializeField, Range(0f, 0.9f)] float IntervalTimeOffsetNegative = 0f;
     [SerializeField, Range(0f, 0.9f)] float IntervalTimeOffsetPositive = 0f;
+
+    //control the ratio of bottle type
+    public int randomrange;
+
     private float realIntervalTime;
     private float WaitForAnimationTime = 0.24f;
     private float randomTime;
@@ -150,7 +157,7 @@ public class EnemyAimV3Line : MonoBehaviour
             {
                 predicrionPosition += predictionVelocity * predictionInterval + new Vector3(0, 0.5f * -Gravity * predictionInterval * predictionInterval);  // Move point
                 predictionVelocity += new Vector3(0, -Gravity * predictionInterval);  // gravity
-                GameObject line = Instantiate(predictionPrefabs, predicrionPosition, Quaternion.identity, point);
+                GameObject line = Instantiate(predictionPrefabs, predicrionPosition, Quaternion.identity);
                 Destroy(line, standIntervalTime);
             }
         }
@@ -236,7 +243,8 @@ public class EnemyAimV3Line : MonoBehaviour
     {
         point.rotation = Quaternion.FromToRotation(Vector3.up, velocity);
 
-        int p0 = Random.Range(0, 6);
+        //GameObject bullet;
+        int p0 = Random.Range(0, randomrange);
 
         if (p0 < 2)
         {
@@ -245,13 +253,13 @@ public class EnemyAimV3Line : MonoBehaviour
         }
         else if(p0 >= 2 && p0 < 5)
         {
-            int p2 = Random.Range(0, tyope2.Length);
-            bullet = Instantiate(tyope2[p2], point.position, Quaternion.identity);
+            int p3 = Random.Range(0, tyope3.Length);
+            bullet = Instantiate(tyope3[p3], point.position, Quaternion.identity);
         }
         else
         {
-            int p3 = Random.Range(0, tyope3.Length);
-            bullet = Instantiate(tyope3[p3], point.position, Quaternion.identity);
+            int p2 = Random.Range(0, tyope2.Length);
+            bullet = Instantiate(tyope2[p2], point.position, Quaternion.identity);
         }
 
         //bullet.GetComponent<Rigidbody>().useGravity = false;

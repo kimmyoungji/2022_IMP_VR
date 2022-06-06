@@ -417,16 +417,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1641a5b94c0f74eb9a3330dbda0e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenObj: {fileID: 6995261752976101820, guid: 1d4553e040ad3af439122247f44ecbcc, type: 3}
+  brokenObj: {fileID: 2988944666684063260, guid: 7048ea76c3b08d44fabb50c384254800, type: 3}
   piovt: {fileID: 8259213447677314400}
   brokenWaitTime: 0.005
   flySpeed: 20
-  brokenSound: {fileID: 8300000, guid: 4f586f51bdf0aba4ca30d90826613031, type: 3}
   gravityScale: 1
   predictionCount: 100
   displayInterval: 30
   predictionPrefabs: {fileID: 3968481479756326357, guid: 7fe56fc0267bdfc469257bc59df845e3, type: 3}
   isDisplayLine: 1
+  isBoxing: 0
   fireBufferTime: 0.05
   isRealThrow: 0
 --- !u!1 &4126361816592688729
