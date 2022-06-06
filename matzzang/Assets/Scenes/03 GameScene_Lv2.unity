@@ -15161,6 +15161,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 188751619141754938, guid: 33fdf28c6e369374f97d8e12744d196b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 188751619141754939, guid: 33fdf28c6e369374f97d8e12744d196b, type: 3}
       propertyPath: m_Name
       value: LeftHandPresence
@@ -50058,6 +50062,10 @@ PrefabInstance:
     - target: {fileID: 7075535761759655437, guid: b9914cf5f06a9c14f9e55e85f432d23f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7075535761759655442, guid: b9914cf5f06a9c14f9e55e85f432d23f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7075535761759655443, guid: b9914cf5f06a9c14f9e55e85f432d23f, type: 3}
       propertyPath: m_Name
