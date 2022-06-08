@@ -71293,17 +71293,22 @@ MonoBehaviour:
   point: {fileID: 6942213228272489684}
   YthanTargetStandValue: 0.3
   YthanTargetOffset: 0.3
-  standIntervalTime: 0.8
-  IntervalTimeOffsetNegative: 0.2
-  IntervalTimeOffsetPositive: 0.1
+  standIntervalTime: 3
+  IntervalTimeOffsetNegative: 0.25
+  IntervalTimeOffsetPositive: 0.25
   randomrange: 6
+  randomrangeLeft: 2
+  randomrangeRight: 5
+  intervalInGroup: 1
+  type1MaxNum: 1
+  type2MaxNum: 1
+  type3MaxNum: 1
   gravityScale: 1
   predictionCount: 20
   predictionPrefabs: {fileID: 3968481479756326357, guid: 7fe56fc0267bdfc469257bc59df845e3, type: 3}
   isDisplayLine: 0
   isSlowMotion: 1
   timeZoomRate: 0.5
-  animator: {fileID: 6942213228272489683}
 --- !u!114 &4911568776358596950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71352,6 +71357,10 @@ PrefabInstance:
       propertyPath: GameManager
       value: 
       objectReference: {fileID: 1538245893}
+    - target: {fileID: 3321769531836175408, guid: e8e67fda9837edd459d6448e04500c37, type: 3}
+      propertyPath: EnemyHealthLoss
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3401633121987354428, guid: e8e67fda9837edd459d6448e04500c37, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -71400,14 +71409,13 @@ PrefabInstance:
       propertyPath: GameManager
       value: 
       objectReference: {fileID: 1538245893}
+    - target: {fileID: 6942213228951134223, guid: e8e67fda9837edd459d6448e04500c37, type: 3}
+      propertyPath: EnemyHealthLoss
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2936274596151972822, guid: e8e67fda9837edd459d6448e04500c37, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e8e67fda9837edd459d6448e04500c37, type: 3}
---- !u!95 &6942213228272489683 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2936274595555658004, guid: e8e67fda9837edd459d6448e04500c37, type: 3}
-  m_PrefabInstance: {fileID: 6942213228272489682}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6942213228272489684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2936274596151972817, guid: e8e67fda9837edd459d6448e04500c37, type: 3}

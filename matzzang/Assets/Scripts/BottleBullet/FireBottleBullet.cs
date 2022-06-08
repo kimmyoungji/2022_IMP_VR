@@ -167,7 +167,7 @@ public class FireBottleBullet : MonoBehaviour
         //var playPos = (transform.position - Camera.main.transform.position) * 0.3f;
         //AudioSource.PlayClipAtPoint(brokenSound, Camera.main.transform.position, 0.3f);
         Destroy(this.gameObject);
-        Destroy(spawnedBroken, 2f);
+        Destroy(spawnedBroken, 1f);
     }
 
     IEnumerator FireBufferTime()

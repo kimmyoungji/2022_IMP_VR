@@ -66,11 +66,10 @@ public class CustomContinuousMovement : MonoBehaviour
         character.Move(fallingSpeed * Time.fixedDeltaTime * Vector3.up);
     }
 
-    // ������
     void CapsuleFllowHeadset()
     {
         character.height = origin.CameraInOriginSpaceHeight + additionalHeight;
-        Vector3 capsuleCenter = transform.InverseTransformPoint(origin.Camera.transform.position);  // �� position ������ռ�任�����ؿռ�
+        Vector3 capsuleCenter = transform.InverseTransformPoint(origin.Camera.transform.position);
         character.center = new Vector3(capsuleCenter.x, character.height / 2 + character.skinWidth, capsuleCenter.z);
     }
 

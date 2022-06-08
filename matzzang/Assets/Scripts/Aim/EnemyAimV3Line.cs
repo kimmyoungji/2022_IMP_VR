@@ -34,12 +34,25 @@ public class EnemyAimV3Line : MonoBehaviour
     [SerializeField, Range(0f, 0.9f)] float IntervalTimeOffsetNegative = 0f;
     [SerializeField, Range(0f, 0.9f)] float IntervalTimeOffsetPositive = 0f;
 
-    //control the ratio of bottle type
-    public int randomrange;
-
     private float realIntervalTime;
     private float WaitForAnimationTime = 0.24f;
     private float randomTime;
+
+    [Header("RandomSystem")]
+    // control the ratio of bottle type
+    [SerializeField, Range(1f, 10f)] int randomrange;
+    [SerializeField, Range(1f, 10f)] int randomrangeLeft;  // Bigger & equal than
+    [SerializeField, Range(1f, 10f)] int randomrangeRight;  // smaller than
+
+    // Max fire number of bottles in one colling;
+    [SerializeField] float intervalInGroup = 0.5f;
+    [SerializeField, Range(1f, 5f)] int type1MaxNum;
+    [SerializeField, Range(1f, 5f)] int type2MaxNum;
+    [SerializeField, Range(1f, 5f)] int type3MaxNum;
+
+    private bool isStart;
+    private GameObject[] loopGroup;
+    private int loopTimes = 0;
 
     // line
     [Header("Prediction")]
@@ -60,17 +73,15 @@ public class EnemyAimV3Line : MonoBehaviour
     // Fix low frame rate issue in slow motion.
     float defultFixedDeltaTime;
 
-    public Animator animator;
+    private Animator animator;
 
     void Awake()
     {
         defultFixedDeltaTime = Time.fixedDeltaTime;
         targetYOffset -= enemyGrabYOffset;
-        //animator = gameObject.GetComponent<Animator>();
+        animator = gameObject.GetComponent<Animator>();
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;  // Make animation playback unaffected by time scaling.
     }
-
-    
 
     void Start()
     {
@@ -91,12 +102,11 @@ public class EnemyAimV3Line : MonoBehaviour
         }
 
         FirePreloadJudgment();
+        realIntervalTime = Random.Range(standIntervalTime * (1 - IntervalTimeOffsetNegative), standIntervalTime * (1 + IntervalTimeOffsetPositive)) * timeZoomRate;
     }
 
     private void Update()
     {
-        //gameObject.SendMessage("IsStopMove", isStopMove);
-
         SlowMotion();
         StartCoroutine(nameof(FireInterval));
 
@@ -111,32 +121,48 @@ public class EnemyAimV3Line : MonoBehaviour
 
     IEnumerator FireInterval()
     {
-        realIntervalTime = Random.Range(standIntervalTime * (1 - IntervalTimeOffsetNegative), standIntervalTime * (1 + IntervalTimeOffsetPositive)) / timeZoomRate;
+        if (loopTimes <= 0)
+        {
+            realIntervalTime = Random.Range(standIntervalTime * (1 - IntervalTimeOffsetNegative), standIntervalTime * (1 + IntervalTimeOffsetPositive)) * timeZoomRate;
+        }
+
         yield return new WaitForSeconds(realIntervalTime);
-        
-        //isStopMove = true;
-        //yield return new WaitForSeconds(0.01f);
+
+        if (loopTimes > 0)
+        {
+            realIntervalTime = intervalInGroup * timeZoomRate;
+        }
 
         //Shoot();
         animator.SetBool("Throw",true);
         StartCoroutine(WaitForAnimation());
-
-        //yield return new WaitForSeconds(0.01f);
-        //isStopMove = false;
 
         StopCoroutine(nameof(FireInterval));
     }
 
     IEnumerator WaitForAnimation(){
         yield return new WaitForSeconds(WaitForAnimationTime);
-        Shoot();
+
+        if (bullet)
+        {
+            Shoot();
+        }
         StartCoroutine(SetThrowFalse());
     }
 
-    IEnumerator SetThrowFalse(){
+    IEnumerator SetThrowFalse()
+    {
         yield return new WaitForSeconds(randomTime*0.5f);
         animator.SetBool("Throw",false);
-        FirePreloadJudgment();
+
+        if(loopTimes <= 0)
+        {
+            FirePreloadJudgment();
+        }
+        else
+        {
+            Loop();
+        }
     }
 
     void Shoot()
@@ -210,61 +236,85 @@ public class EnemyAimV3Line : MonoBehaviour
         point.rotation = Quaternion.FromToRotation(Vector3.up, velocity);
 
         int p1 = Random.Range(0, tyope1.Length);
-        bullet = Instantiate(tyope1[p1], point.position, Quaternion.identity, point);
+        bullet = Instantiate(tyope1[p1], point.position, Quaternion.identity);
 
-        //bullet.GetComponent<Rigidbody>().useGravity = false;
-        //bullet.transform.position = point.position;
+        loopTimes = type1MaxNum - 1;
+        if (loopTimes > 0)
+        {
+            loopGroup = tyope1;
+        }
     }
 
     private void FirePreload(GameObject[] tyope1, GameObject[] tyope2)
     {
         point.rotation = Quaternion.FromToRotation(Vector3.up, velocity);
 
-        int p0 = Random.Range(0, 2);
+        int p0 = Random.Range(1, randomrange);
 
-        if (p0 < 1)
+        if (p0 < randomrangeLeft)
         {
             int p1 = Random.Range(0, tyope1.Length);
             bullet = Instantiate(tyope1[p1], point.position, Quaternion.identity);
+
+            loopTimes = type1MaxNum - 1;
+            if (loopTimes > 0)
+            {
+                loopGroup = tyope1;
+            }
         }
         else
         {
             int p2 = Random.Range(0, tyope2.Length);
             bullet = Instantiate(tyope2[p2], point.position, Quaternion.identity);
+
+            loopTimes = type2MaxNum - 1;
+            if (loopTimes > 0)
+            {
+                loopGroup = tyope2;
+            }
         }
-
-        //bullet.GetComponent<Rigidbody>().useGravity = false;
-        //bullet.transform.position = point.position;
     }
-
-   
 
     private void FirePreload(GameObject[] tyope1, GameObject[] tyope2, GameObject[] tyope3)
     {
         point.rotation = Quaternion.FromToRotation(Vector3.up, velocity);
 
-        //GameObject bullet;
-        int p0 = Random.Range(0, randomrange);
+        int p0 = Random.Range(1, randomrange);
 
-        if (p0 < 2)
+
+        if (p0 < randomrangeLeft)
         {
             int p1 = Random.Range(0, tyope1.Length);
             bullet = Instantiate(tyope1[p1], point.position, Quaternion.identity);
+
+            loopTimes = type1MaxNum - 1;
+            if(loopTimes > 0)
+            {
+                loopGroup = tyope1;
+            }
         }
-        else if(p0 >= 2 && p0 < 5)
-        {
-            int p3 = Random.Range(0, tyope3.Length);
-            bullet = Instantiate(tyope3[p3], point.position, Quaternion.identity);
-        }
-        else
+        else if (p0 >= randomrangeLeft && p0 < randomrangeRight)
         {
             int p2 = Random.Range(0, tyope2.Length);
             bullet = Instantiate(tyope2[p2], point.position, Quaternion.identity);
-        }
 
-        //bullet.GetComponent<Rigidbody>().useGravity = false;
-        //bullet.transform.position = point.position;
-        //bullet.GetComponent<Collider>().enabled = false;
+            loopTimes = type2MaxNum - 1;
+            if (loopTimes > 0)
+            {
+                loopGroup = tyope2;
+            }
+        }
+        else
+        {
+            int p3 = Random.Range(0, tyope3.Length);
+            bullet = Instantiate(tyope3[p3], point.position, Quaternion.identity);
+
+            loopTimes = type3MaxNum - 1;
+            if (loopTimes > 0)
+            {
+                loopGroup = tyope3;
+            }
+        }
     }
 
     void Fire()
@@ -273,6 +323,17 @@ public class EnemyAimV3Line : MonoBehaviour
         bullet.SendMessage("FireParationA");
         bullet.SendMessage("Shoot", velocity);
         bullet.SendMessage("FiredByOtherRotation", (point.position - velocity).sqrMagnitude);
+    }
+
+    void Loop()
+    {
+        int p1 = Random.Range(0, loopGroup.Length);
+        bullet = Instantiate(loopGroup[p1], point.position, Quaternion.identity);
+
+        //realIntervalTime = 0.2f;
+        //StartCoroutine(FireInterval());
+
+        loopTimes--;
     }
 
     void SlowMotion()

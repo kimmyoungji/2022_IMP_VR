@@ -57106,7 +57106,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: b759872243f6ca94ea3f7ac5e36651d3, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0615761c321e73a43a22d8d81727d1cb, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8d12f18fc72602a4cb48924d089e3347, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -73932,10 +73932,18 @@ PrefabInstance:
       propertyPath: GameManager
       value: 
       objectReference: {fileID: 1538245893}
+    - target: {fileID: 6010981290723066654, guid: c32e881b920ff4142a28f7ad8bd0ebaa, type: 3}
+      propertyPath: EnemyHealthLoss
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6010981290723066655, guid: c32e881b920ff4142a28f7ad8bd0ebaa, type: 3}
       propertyPath: GameManager
       value: 
       objectReference: {fileID: 1538245893}
+    - target: {fileID: 6010981290723066655, guid: c32e881b920ff4142a28f7ad8bd0ebaa, type: 3}
+      propertyPath: EnemyHealthLoss
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6608506035019192295, guid: c32e881b920ff4142a28f7ad8bd0ebaa, type: 3}
       propertyPath: target
       value: 
@@ -73955,11 +73963,6 @@ GameObject:
 --- !u!4 &6010981289653070508 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4008265084763882978, guid: c32e881b920ff4142a28f7ad8bd0ebaa, type: 3}
-  m_PrefabInstance: {fileID: 6010981289653070506}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &6010981289653070509 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2240590091433481150, guid: c32e881b920ff4142a28f7ad8bd0ebaa, type: 3}
   m_PrefabInstance: {fileID: 6010981289653070506}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6010981289653070510
@@ -73997,19 +74000,24 @@ MonoBehaviour:
   - {fileID: 9064392156057865712, guid: a6ef1ff03be9ae0448a8332a6025c953, type: 3}
   target: {fileID: 604840375}
   point: {fileID: 6010981289653070508}
-  YthanTargetStandValue: 0.3
-  YthanTargetOffset: 0
-  standIntervalTime: 1
-  IntervalTimeOffsetNegative: 0
-  IntervalTimeOffsetPositive: 0
+  YthanTargetStandValue: 0.2
+  YthanTargetOffset: 0.2
+  standIntervalTime: 2.5
+  IntervalTimeOffsetNegative: 0.2
+  IntervalTimeOffsetPositive: 0.2
   randomrange: 10
+  randomrangeLeft: 3
+  randomrangeRight: 8
+  intervalInGroup: 1.25
+  type1MaxNum: 1
+  type2MaxNum: 2
+  type3MaxNum: 1
   gravityScale: 1
   predictionCount: 20
   predictionPrefabs: {fileID: 3968481479756326357, guid: 7fe56fc0267bdfc469257bc59df845e3, type: 3}
   isDisplayLine: 0
   isSlowMotion: 1
-  timeZoomRate: 0.7
-  animator: {fileID: 6010981289653070509}
+  timeZoomRate: 0.6
 --- !u!114 &6010981289653070511
 MonoBehaviour:
   m_ObjectHideFlags: 0

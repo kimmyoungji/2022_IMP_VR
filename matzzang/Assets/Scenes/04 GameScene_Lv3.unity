@@ -52102,7 +52102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1538245893}
   flySpeed: 1.25
-  EnemyHealthLoss: 20
+  EnemyHealthLoss: 15
   animator: {fileID: 1516356705}
 --- !u!114 &1516356704
 MonoBehaviour:
@@ -52117,7 +52117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1538245893}
-  EnemyHealthLoss: 20
+  EnemyHealthLoss: 15
 --- !u!95 &1516356705 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3712630541521857153, guid: 63e7a816f11f02c4c953d19fa07178dd, type: 3}
@@ -52168,19 +52168,24 @@ MonoBehaviour:
   - {fileID: 9064392156057865712, guid: a6ef1ff03be9ae0448a8332a6025c953, type: 3}
   target: {fileID: 1964569898}
   point: {fileID: 1516356706}
-  YthanTargetStandValue: 0.3
-  YthanTargetOffset: 0
-  standIntervalTime: 1
-  IntervalTimeOffsetNegative: 0
-  IntervalTimeOffsetPositive: 0
-  randomrange: 14
+  YthanTargetStandValue: 0.2
+  YthanTargetOffset: 0.2
+  standIntervalTime: 2.5
+  IntervalTimeOffsetNegative: 0.3
+  IntervalTimeOffsetPositive: 0.2
+  randomrange: 10
+  randomrangeLeft: 3
+  randomrangeRight: 8
+  intervalInGroup: 1
+  type1MaxNum: 1
+  type2MaxNum: 3
+  type3MaxNum: 1
   gravityScale: 1
   predictionCount: 20
   predictionPrefabs: {fileID: 3968481479756326357, guid: 7fe56fc0267bdfc469257bc59df845e3, type: 3}
   isDisplayLine: 0
   isSlowMotion: 1
-  timeZoomRate: 0.8
-  animator: {fileID: 1516356705}
+  timeZoomRate: 0.6
 --- !u!114 &1516356709
 MonoBehaviour:
   m_ObjectHideFlags: 0
