@@ -75,9 +75,14 @@ public class EnemyAimV3Line : MonoBehaviour
 
     private Animator animator;
 
+    public bool isPaused = false;
+    //float defultTimeZoomRate;
+
+
     void Awake()
     {
         defultFixedDeltaTime = Time.fixedDeltaTime;
+        //defultTimeZoomRate = timeZoomRate;
         targetYOffset -= enemyGrabYOffset;
         animator = gameObject.GetComponent<Animator>();
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;  // Make animation playback unaffected by time scaling.
@@ -108,14 +113,15 @@ public class EnemyAimV3Line : MonoBehaviour
     private void Update()
     {
         SlowMotion();
-        StartCoroutine(nameof(FireInterval));
+
+        if(!isPaused)
+            StartCoroutine(nameof(FireInterval));
 
         if (bullet)
         {
             var grabPos = new Vector3(point.position.x, point.position.y + enemyGrabYOffset, point.position.z);
             bullet.transform.position = grabPos;
             bullet.transform.rotation = transform.rotation;
-
         }
     }
 
