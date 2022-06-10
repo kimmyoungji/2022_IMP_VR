@@ -33945,7 +33945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3468293132428025523, guid: 348e620061fc00f44ba849c78cc1a4b0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3653772408323712666, guid: 348e620061fc00f44ba849c78cc1a4b0, type: 3}
       propertyPath: m_Name
@@ -33957,7 +33957,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3835207034011726813, guid: 348e620061fc00f44ba849c78cc1a4b0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946455184529469757, guid: 348e620061fc00f44ba849c78cc1a4b0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6329572482161203137, guid: 348e620061fc00f44ba849c78cc1a4b0, type: 3}
       propertyPath: m_IsActive
@@ -49965,7 +49969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1538245893}
   flySpeed: 1.25
-  EnemyHealthLoss: 15
+  EnemyHealthLoss: 20
   animator: {fileID: 1516356705}
 --- !u!114 &1516356704
 MonoBehaviour:
@@ -49980,7 +49984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 1538245893}
-  EnemyHealthLoss: 15
+  EnemyHealthLoss: 20
 --- !u!95 &1516356705 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3712630541521857153, guid: 63e7a816f11f02c4c953d19fa07178dd, type: 3}
@@ -50048,7 +50052,7 @@ MonoBehaviour:
   predictionPrefabs: {fileID: 3968481479756326357, guid: 7fe56fc0267bdfc469257bc59df845e3, type: 3}
   isDisplayLine: 0
   isSlowMotion: 1
-  timeZoomRate: 0.6
+  timeZoomRate: 0.52
   isPaused: 0
 --- !u!114 &1516356709
 MonoBehaviour:
@@ -50452,9 +50456,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 2328077733061476799, guid: 5a8b811f8a8a5224db0780c476c5bb89, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -35
+      objectReference: {fileID: 0}
     - target: {fileID: 2786466426935602737, guid: 5a8b811f8a8a5224db0780c476c5bb89, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3888044982195261134, guid: 5a8b811f8a8a5224db0780c476c5bb89, type: 3}
       propertyPath: m_Pivot.x
@@ -58968,9 +58976,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6525572756009363384, guid: a92242561486a4943a5f510917bba5d0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6659143753662171190, guid: a92242561486a4943a5f510917bba5d0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7172006620105308036, guid: a92242561486a4943a5f510917bba5d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -58982,7 +58994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8223216115450932330, guid: a92242561486a4943a5f510917bba5d0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a92242561486a4943a5f510917bba5d0, type: 3}
