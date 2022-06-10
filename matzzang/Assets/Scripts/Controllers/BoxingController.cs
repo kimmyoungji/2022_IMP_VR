@@ -19,13 +19,17 @@ public class BoxingController : MonoBehaviour
     [SerializeField] float targetSpeed = 5f;
     [SerializeField] GameObject forceField;
     [SerializeField] float forceFieldContinueTime = 0.2f;
-
     bool isForceFieldOn = false;
 
+    //[SerializeField] private UIManager UIManager;
+    [SerializeField] GameObject pauseUI;
+    bool isPressed = false;
+    //bool interrupt = false;
 
     void Start()
     {
         TryInitialize();
+        //UIManager = FindObjectOfType<UIManager>();
     }
 
     void TryInitialize()  // ³¢ÊÔ³õÊ¼»¯
@@ -54,6 +58,7 @@ public class BoxingController : MonoBehaviour
         else
         {
             targetDevice.TryGetFeatureValue(CommonUsages.gripButton, out bool gripButtonPressed);
+            targetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool menuButtonPressed);
             targetDevice.TryGetFeatureValue(CommonUsages.deviceVelocity, out Vector3 deviceVelocityValue);
             targetDevice.TryGetHapticCapabilities(out capabilities);
 
@@ -61,6 +66,8 @@ public class BoxingController : MonoBehaviour
 
             //var speed = deviceVelocityValue.sqrMagnitude;
             var speed = deviceVelocityValue.sqrMagnitude;
+
+            isPressed = menuButtonPressed;
 
             if (gripButtonPressed && speed >= targetSpeed)
             {
@@ -74,6 +81,8 @@ public class BoxingController : MonoBehaviour
             }
         }
 
+        Paused();
+
         IEnumerator ForceFieldContinueTime()
         {
             yield return new WaitForSecondsRealtime(forceFieldContinueTime);  // WaitForSecondsRealtime will not get effect by slow motion. And 0.1 is good.
@@ -86,5 +95,36 @@ public class BoxingController : MonoBehaviour
     {
         uint channel = 0;
         targetDevice.SendHapticImpulse(channel, hapticAmplitude, hapticDuration);
+    }
+
+    public void Paused()
+    {
+        if (pauseUI)
+        {
+            if (isPressed && !pauseUI.activeInHierarchy)
+            {
+                pauseUI.SetActive(true);
+            }
+        }
+        
+        //if (pauseUI)
+        //{
+        //    if (isPressed && !interrupt && !pauseUI.activeInHierarchy)
+        //    {
+        //        pauseUI.SetActive(true);
+        //    }
+        //    else if (!isPressed && !interrupt && pauseUI.activeInHierarchy)
+        //    {
+        //        interrupt = true;
+        //    }
+        //    else if (isPressed && interrupt && pauseUI.activeInHierarchy)
+        //    {
+        //        pauseUI.SetActive(false);
+        //    }
+        //    else if (!isPressed && interrupt && !pauseUI.activeInHierarchy)
+        //    {
+        //        interrupt = false;
+        //    }
+        //}
     }
 }

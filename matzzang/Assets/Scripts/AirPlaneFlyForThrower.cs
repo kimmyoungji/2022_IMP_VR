@@ -9,8 +9,8 @@ public class AirPlaneFlyForThrower : MonoBehaviour
     [SerializeField]
     GameManager GameManager;
     
-    [SerializeField] float flySpeed = 2.0f;
-    [SerializeField] AudioData hitAudio;
+    [SerializeField] float flySpeed = 1.5f;
+    //[SerializeField] AudioData hitAudio;
 
     // Enemy Movement var
     Vector3 originPos;
@@ -29,12 +29,28 @@ public class AirPlaneFlyForThrower : MonoBehaviour
     private Vector3 initGap;
     private Vector3 gap;
 
+    // Offset slow motion effects
+    private float rate;
+    private bool isSlowMotion = true;
+    
+
+    private void Awake()
+    {
+        rate = GetComponent<EnemyAimV3Line>().timeZoomRate;
+        isSlowMotion = GetComponent<EnemyAimV3Line>().isSlowMotion;
+    }
+
     // start
     private void Start(){ 
         GameManager = GetComponent<GameManager>();
         animator = GetComponent<Animator>();
         originPos = this.gameObject.transform.position;
         GetRandomPosition();
+
+        if (isSlowMotion)
+        {
+            flySpeed /= rate;
+        }
     }
 
     void Update()

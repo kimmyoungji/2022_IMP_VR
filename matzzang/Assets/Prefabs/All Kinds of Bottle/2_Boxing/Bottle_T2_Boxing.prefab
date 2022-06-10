@@ -447,11 +447,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1641a5b94c0f74eb9a3330dbda0e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenObj: {fileID: 2160713393358250073, guid: 1329ad040ccb2d04289289d309720935, type: 3}
+  brokenObj: {fileID: 6691364248356636671, guid: 57c844fc1468d4141bb7ffe4ba02daa9, type: 3}
   piovt: {fileID: 5146886486501112523}
   brokenWaitTime: 0.005
   flySpeed: 20
-  brokenSound: {fileID: 8300000, guid: 4f586f51bdf0aba4ca30d90826613031, type: 3}
   gravityScale: 1
   predictionCount: 100
   displayInterval: 30
