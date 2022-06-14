@@ -354,6 +354,7 @@ public class EnemyAimV3Line : MonoBehaviour
         }
         else
         {
+            timeZoomRate = 1F;
             Time.timeScale = 1F;
         }
     }
@@ -368,10 +369,17 @@ public class EnemyAimV3Line : MonoBehaviour
 
     private void OnDisable()
     {
-        if (Time.timeScale != 1F)
-        {
-            timeZoomRate = 1F;
-            Time.timeScale = 1F;
-        }
+        Time.fixedDeltaTime = defultFixedDeltaTime;
+        timeZoomRate = 1F;
+        Time.timeScale = 1F;
     }
+
+    //private void OnDestroy()
+    //{
+    //    if (Time.timeScale != 1F)
+    //    {
+    //        timeZoomRate = 1F;
+    //        Time.timeScale = 1F;
+    //    }
+    //}
 }

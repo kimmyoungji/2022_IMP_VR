@@ -18,7 +18,7 @@ public class CustomContinuousMovement : MonoBehaviour
     public EnemyAimV3Line enemyAimV3Line;
     public ActionBasedSnapTurnProvider actionBasedSnapTurnProvider;
     private float slowMotionValue = 1F;
-    private float originSpeed = 1.0f;
+    private float originSpeed = 1.5f;
     private float originTurnInterval = 0.2f;
 
     private float fallingSpeed;
@@ -84,6 +84,8 @@ public class CustomContinuousMovement : MonoBehaviour
 
     private void GetNewSlowMotionValue()
     {
+        print(slowMotionValue);
+
         if (enemyAimV3Line)
         {
             if (enemyAimV3Line.isSlowMotion)
@@ -91,7 +93,6 @@ public class CustomContinuousMovement : MonoBehaviour
                 if (slowMotionValue != enemyAimV3Line.timeZoomRate)
                 {
                     slowMotionValue = enemyAimV3Line.timeZoomRate;
-
                     speed = originSpeed / slowMotionValue;
                     actionBasedSnapTurnProvider.debounceTime = originTurnInterval * slowMotionValue;
                 }
@@ -101,6 +102,11 @@ public class CustomContinuousMovement : MonoBehaviour
                 speed = originSpeed;
                 actionBasedSnapTurnProvider.debounceTime = originTurnInterval;
             }
+        }
+        else
+        {
+            speed = originSpeed;
+            actionBasedSnapTurnProvider.debounceTime = originTurnInterval;
         }
     }
 }

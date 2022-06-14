@@ -34,11 +34,14 @@ public class PauseUI : MonoBehaviour
 
     private void OnEnable()
     {
-        enemyAimV3Line.isPaused = true;
-        leftHandRay.SetActive(true);
-        rigihtHandRay.SetActive(true);
-        isPressing = true;
-        airPlaneFlyForThrower.enabled = false;
+        if (enemyAimV3Line)
+        {
+            enemyAimV3Line.isPaused = true;
+            leftHandRay.SetActive(true);
+            rigihtHandRay.SetActive(true);
+            isPressing = true;
+            airPlaneFlyForThrower.enabled = false;
+        }
     }
 
     private void OnDisable()
