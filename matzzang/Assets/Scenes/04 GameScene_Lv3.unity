@@ -50412,7 +50412,7 @@ MonoBehaviour:
   - {fileID: 9064392156057865712, guid: a6ef1ff03be9ae0448a8332a6025c953, type: 3}
   target: {fileID: 1964569898}
   point: {fileID: 1516356706}
-  YthanTargetStandValue: 0.2
+  YthanTargetStandValue: 0.25
   YthanTargetOffset: 0.2
   standIntervalTime: 2.5
   IntervalTimeOffsetNegative: 0.3

@@ -318,7 +318,7 @@ MonoBehaviour:
   m_SmoothRotationAmount: 5
   m_TightenRotation: 0.5
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 10
+  m_ThrowSmoothingDuration: 2
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -334,8 +334,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 7
-  m_ThrowAngularVelocityScale: 7
+  m_ThrowVelocityScale: 3
+  m_ThrowAngularVelocityScale: 5
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 0
   m_AttachPointCompatibilityMode: 0

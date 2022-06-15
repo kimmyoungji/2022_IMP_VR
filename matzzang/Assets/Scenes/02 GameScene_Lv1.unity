@@ -71808,7 +71808,7 @@ MonoBehaviour:
   - {fileID: 9064392156057865712, guid: a6ef1ff03be9ae0448a8332a6025c953, type: 3}
   target: {fileID: 1953192280}
   point: {fileID: 6942213228272489684}
-  YthanTargetStandValue: 0.3
+  YthanTargetStandValue: 0.35
   YthanTargetOffset: 0.3
   standIntervalTime: 3
   IntervalTimeOffsetNegative: 0.25

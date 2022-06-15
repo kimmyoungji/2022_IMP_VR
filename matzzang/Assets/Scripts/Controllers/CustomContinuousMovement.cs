@@ -84,8 +84,6 @@ public class CustomContinuousMovement : MonoBehaviour
 
     private void GetNewSlowMotionValue()
     {
-        print(slowMotionValue);
-
         if (enemyAimV3Line)
         {
             if (enemyAimV3Line.isSlowMotion)
